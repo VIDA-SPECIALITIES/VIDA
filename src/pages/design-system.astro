@@ -1,0 +1,162 @@
+---
+/**
+ * Internal design-system preview (noindex). Not part of the public navigation.
+ * Mirrors docs/design-system.md so tokens can be reviewed in the browser.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import Logo from '../components/Logo.astro';
+import livingCurve from '../assets/temporary/living-curve-concept.png';
+import { COMPANY_NAME, PRODUCT_DISCLAIMER } from '../data/site';
+
+const core = [
+  { name: 'navy', hex: '#233645', role: 'Logo wordmark · primary text', cls: 'bg-navy', dark: true },
+  { name: 'ink', hex: '#0E1A2A', role: 'Deep backgrounds · cinematic sections', cls: 'bg-ink', dark: true },
+  { name: 'green', hex: '#236F51', role: 'Brand accent · links · focus', cls: 'bg-green', dark: true },
+  { name: 'clay', hex: '#CC9883', role: 'Warm accent · on dark only for text', cls: 'bg-clay', dark: false },
+  { name: 'mist', hex: '#EDEFF0', role: 'Page background (logo artboard)', cls: 'bg-mist', dark: false },
+];
+
+const derived = [
+  { name: 'clay-deep', hex: '#925E49', role: 'Clay for text on light (4.6:1 on mist)', cls: 'bg-clay-deep', dark: true },
+  { name: 'mist-deep', hex: '#DDE1E3', role: 'Hairlines · quiet surfaces', cls: 'bg-mist-deep', dark: false },
+  { name: 'paper', hex: '#FFFFFF', role: 'Raised surfaces, sparingly', cls: 'bg-paper', dark: false },
+];
+---
+
+<BaseLayout title="Design System" noindex>
+  <main class="container-site py-section space-y-32">
+    <header class="space-y-6">
+      <p class="eyebrow text-clay-deep">Internal · Working foundation</p>
+      <h1 class="text-display-lg">Design system</h1>
+      <p class="max-w-prose">
+        Working palette read from the supplied logo artwork, with the working type pairing of Cormorant Garamond and
+        Montserrat. Logo clear-space and minimum sizes are provisional, derived from the supplied artwork.
+      </p>
+    </header>
+
+    <section class="space-y-10">
+      <h2 class="text-display-sm">Logo</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="grid aspect-[4/3] place-items-center bg-mist ring-1 ring-mist-deep">
+          <Logo class="w-3/5 text-navy" />
+        </div>
+        <div class="grid aspect-[4/3] place-items-center bg-ink">
+          <Logo class="w-3/5 text-mist" />
+        </div>
+        <div class="grid aspect-[4/3] place-items-center bg-green">
+          <Logo class="w-3/5 text-mist" />
+        </div>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <figure class="space-y-4">
+          <div class="grid aspect-[4/3] place-items-center bg-paper ring-1 ring-mist-deep">
+            <!-- 320px wordmark → letter height ≈ 70px → X = ¼ letter height ≈ 17.6px -->
+            <div class="p-[17.6px] outline-1 outline-dashed outline-clay">
+              <Logo class="block w-80 text-navy" />
+            </div>
+          </div>
+          <figcaption class="text-sm text-navy/75">
+            Clear space: X = ¼ of the wordmark letter height (equal to the gap between wordmark and descriptor in the
+            supplied lockup) on every side. Minimum width: wordmark 96px, lockup 240px.
+          </figcaption>
+        </figure>
+        <figure class="space-y-4">
+          <div class="grid aspect-[4/3] place-items-center bg-paper ring-1 ring-mist-deep">
+            <Logo variant="lockup" class="w-3/5 text-navy" />
+          </div>
+          <figcaption class="text-sm text-navy/75">
+            Supplied lockup, for reference. Its descriptor reads “SPECIALITIES LIMITED”, which differs from the confirmed
+            name “{COMPANY_NAME}”. Not used in the interface until corrected artwork is supplied.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="flex flex-wrap items-end gap-8">
+        <img src="/favicon.svg" alt="" width="64" height="64" class="ring-1 ring-mist-deep" />
+        <img src="/apple-touch-icon.png" alt="" width="32" height="32" class="ring-1 ring-mist-deep" />
+        <img src="/favicon.ico" alt="" width="16" height="16" class="ring-1 ring-mist-deep" />
+        <p class="eyebrow">Favicon · “V” glyph of the supplied wordmark</p>
+      </div>
+    </section>
+
+    <section class="space-y-10">
+      <h2 class="text-display-sm">Temporary imagery</h2>
+      <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-end">
+        <Image
+          src={livingCurve}
+          alt="Living Curve bottle concept"
+          width={68}
+          class="h-[273px] w-auto"
+          densities={[1, 2]}
+        />
+        <p class="max-w-prose text-sm text-navy/75">
+          TEMPORARY. Cropped from the Design Codex image in the content PDF (136×546px). Concept render of packaging in
+          development, not final packaging. Crisp only up to about 273px display height; replace with a high-resolution,
+          label-free production render before launch.
+        </p>
+      </div>
+    </section>
+
+    <section class="space-y-10">
+      <h2 class="text-display-sm">Colour</h2>
+      {
+        [
+          { label: 'Core — from logo PDF (provisional)', items: core },
+          { label: 'Derived — proposed', items: derived },
+        ].map((group) => (
+          <div class="space-y-4">
+            <p class="eyebrow">{group.label}</p>
+            <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {group.items.map((c) => (
+                <li class="overflow-hidden ring-1 ring-mist-deep">
+                  <div class:list={['flex h-28 items-end p-4', c.cls, c.dark ? 'text-mist' : 'text-navy']}>
+                    <span class="eyebrow">{c.name}</span>
+                  </div>
+                  <div class="space-y-1 bg-paper p-4 text-sm">
+                    <p class="font-medium tabular-nums">{c.hex}</p>
+                    <p class="text-navy/70">{c.role}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="space-y-10">
+      <h2 class="text-display-sm">Typography</h2>
+      <div class="space-y-8">
+        <p class="eyebrow text-clay-deep">Eyebrow · Montserrat 500 · 0.24em</p>
+        <p class="font-display text-display-xl">Honour life.</p>
+        <p class="font-display text-display-lg italic">Elevate the everyday</p>
+        <p class="font-display text-display-md">Every curve has a purpose.</p>
+        <p class="max-w-prose text-lg">
+          Body · Montserrat 400. VIDA was founded in Nigeria with a simple ambition: to elevate hydration beyond the
+          ordinary.
+        </p>
+      </div>
+    </section>
+
+    <section class="space-y-10">
+      <h2 class="text-display-sm">Components (proposed)</h2>
+      <div class="flex flex-wrap items-center gap-8">
+        <a
+          href="#"
+          class="eyebrow inline-flex items-center gap-3 border border-navy px-7 py-4 transition-colors duration-500 ease-calm hover:bg-navy hover:text-mist"
+          >Discover VIDA</a
+        >
+        <a href="#" class="eyebrow border-b border-navy/30 pb-1 transition-colors hover:border-navy"
+          >Partner with VIDA →</a
+        >
+      </div>
+      <div class="bg-ink p-10 text-mist">
+        <p class="eyebrow text-clay">On ink</p>
+        <p class="mt-4 font-display text-display-md">Built in Africa. Designed for the world.</p>
+      </div>
+      <p class="max-w-prose border-t border-mist-deep pt-4 text-sm italic text-navy/75">{PRODUCT_DISCLAIMER}</p>
+    </section>
+  </main>
+</BaseLayout>

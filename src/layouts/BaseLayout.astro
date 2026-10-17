@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import { COMPANY_NAME, DEFAULT_DESCRIPTION } from '../data/site';
+
+interface Props {
+  /** Page name, e.g. "Our Story". Omit on the homepage. */
+  title?: string;
+  description?: string;
+  /** Keep internal/work-in-progress pages out of search engines. */
+  noindex?: boolean;
+}
+
+const { title, description = DEFAULT_DESCRIPTION, noindex = false } = Astro.props;
+const fullTitle = title ? `${title} | ${COMPANY_NAME}` : COMPANY_NAME;
+// Only available once SITE_URL is configured (see astro.config.mjs).
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+---
+
+<!doctype html>
+<html lang="en-NG">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#edeff0" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:site_name" content={COMPANY_NAME} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_NG" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="min-h-dvh bg-mist text-navy">
+    <slot />
+  </body>
+</html>

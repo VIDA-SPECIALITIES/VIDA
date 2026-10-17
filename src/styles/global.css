@@ -1,0 +1,122 @@
+/*
+ * VIDA design tokens — see docs/design-system.md for rationale and status.
+ *
+ * Core brand colours were read directly from the vector source
+ * (docs/brand-reference/VIDA BRAND LOGO_261016_153631.pdf, sRGB ICC profile)
+ * and are the client-confirmed working palette. Derived tones are marked.
+ * Fonts: Cormorant Garamond (display) + Montserrat (sans) are the confirmed
+ * working pairing — do not introduce other families.
+ */
+@import '@fontsource-variable/cormorant-garamond/wght.css';
+@import '@fontsource-variable/cormorant-garamond/wght-italic.css';
+@import '@fontsource-variable/montserrat/wght.css';
+@import 'tailwindcss';
+
+@theme {
+  /* Core brand colours (from logo PDF) */
+  --color-navy: #233645; /* logo wordmark */
+  --color-ink: #0e1a2a; /* palette swatch 3 */
+  --color-green: #236f51; /* palette swatch 1 */
+  --color-clay: #cc9883; /* palette swatch 2 (terracotta) */
+  --color-mist: #edeff0; /* logo artboard background */
+
+  /* Derived tones (not in source artwork) */
+  --color-clay-deep: #925e49; /* clay darkened for text on light: 4.6:1 on mist */
+  --color-mist-deep: #dde1e3; /* hairlines, dividers, quiet surfaces */
+  --color-paper: #ffffff;
+
+  /* Typography (working pairing) */
+  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Montserrat Variable', 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Fluid display scale */
+  --text-display-xl: clamp(3rem, 1.6rem + 6vw, 7.5rem);
+  --text-display-xl--line-height: 0.95;
+  --text-display-lg: clamp(2.5rem, 1.6rem + 3.6vw, 5rem);
+  --text-display-lg--line-height: 1;
+  --text-display-md: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --text-display-md--line-height: 1.08;
+  --text-display-sm: clamp(1.5rem, 1.25rem + 1vw, 2.125rem);
+  --text-display-sm--line-height: 1.2;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+
+  /* Letter-spacing echoing the logo's widely spaced descriptor line */
+  --tracking-eyebrow: 0.24em;
+  --tracking-nav: 0.16em;
+
+  /* Layout */
+  --container-prose: 40rem;
+  --container-site: 80rem;
+  --spacing-section: clamp(6rem, 4rem + 8vw, 12rem);
+  --spacing-gutter: clamp(1.25rem, 0.75rem + 2.5vw, 3rem);
+
+  /* Motion: slow, quiet, never bouncy */
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-mist);
+    color: var(--color-navy);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-clay);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}

@@ -1,0 +1,219 @@
+# Approved website content — VIDA Specialties Limited
+
+Transcribed from `docs/brand-reference/VIDA Web content.pdf` (6 pages). The PDF is the source of truth; this file exists so the copy is searchable and diff-able. If the two ever disagree, the PDF wins and this file must be corrected. The only exceptions are the documented corrections below.
+
+## Confirmed decisions (client, 2026-10-17)
+
+| # | Decision | Effect on this transcript |
+|---|---|---|
+| 1 | Company name is **VIDA Specialties Limited** everywhere | Matches the PDF body copy, which is transcribed as written. **Exceptions that are not text we control:** the supplied logo artwork's descriptor reads "SPECIALITIES LIMITED", and the approved email address is `hello@vidaspecialities.com`. Both are kept exactly as supplied. |
+| 2 | Nav item and page **"Our Approach" is renamed "Our Philosophy"** | The navigation below uses the new label |
+| 3 | The **typed vision** is the approved vision | The infographic wording must not be used, merged or substituted |
+| 10 | "every day" → "everyday" where grammar requires | One correction, recorded under [Corrections](#corrections-to-the-source-text) |
+| 11 | Our Philosophy is built around the four principles | Only the source statements below may be used. No claims added to fill gaps |
+
+## Transcription rules
+
+- **Creative direction is kept separate from copy.** Notes addressed to the build team (e.g. "The opening should be almost cinematic") are collected under [Creative direction](#creative-direction-not-site-copy) and must not appear on the site.
+- Line breaks, capitalisation and punctuation follow the PDF. Text shown in **bold** was bold in the PDF.
+
+## Corrections to the source text
+
+| Location | PDF text | Approved text | Reason |
+|---|---|---|---|
+| Our Philosophy → Thoughtful Design | "…good design should make every day experiences better." | "…good design should make **everyday** experiences better." | "everyday" is the adjective modifying "experiences". The meaning is unchanged (decision 10). |
+
+No other instance of "every day" occurs in the approved copy. "Everyday hydration", "everyday wellness" and "elevating the everyday" are already correct.
+
+---
+
+## Vision, Mission, Purpose
+
+**VISION** (approved: the typed text)
+_To become one of Africa's most respected wellness beverage companies, recognized globally for products built on trust, craftsmanship and evidence-led innovation._
+
+**MISSION**
+_To engineer premium wellness beverages that consistently improve everyday experiences through thoughtful formulation, disciplined manufacturing and enduring customer trust._
+
+**PURPOSE**
+_We honour life by elevating the everyday_
+
+> The page 1 infographic shows different vision and mission wording. Per decision 3 it is **not approved**: do not use, merge or paraphrase it.
+
+## Navigation
+
+HOME | OUR STORY | OUR PHILOSOPHY | OUR PORTFOLIO | PARTNERSHIPS | CONTACT
+
+(The PDF lists "OUR APPROACH"; it was renamed by decision 2.)
+
+---
+
+## Homepage
+
+Brand: **VIDA**
+
+Headline: **HONOUR LIFE.** ELEVATE THE EVERYDAY
+
+Sub-headline: Premium hydration, thoughtfully created for modern living.
+
+Intro: **VIDA Specialties Limited is building a new generation of hydration products from Africa—combining exceptional water, purposeful nutrition, disciplined science and considered design.**
+
+CTA: **DISCOVER VIDA**
+
+---
+
+## Our Story
+
+Eyebrow/heading: **LIFE, ELEVATED.**
+
+VIDA means **life**.
+
+That simple idea sits at the heart of everything we create.
+
+Water is one of life's most fundamental necessities. Yet we believe water should do more than just quench thirst.
+
+VIDA was founded in Nigeria with a simple ambition: to elevate hydration beyond the ordinary.
+
+We are bringing together water science, purposeful nutrition, disciplined product development and thoughtful design to create hydration products for the way people live today.
+
+Our ambition extends beyond creating another bottled-water brand. We are building a modern African hydration company with the standards, systems and imagination to serve consumers at home and, ultimately, around the world.
+
+---
+
+## Our Philosophy
+
+_Page: **Our Philosophy** (`/our-philosophy/`), built around the four principles below (decision 11)._
+
+Heading: **EVERYDAY DOESN'T HAVE TO MEAN ORDINARY.**
+
+### Exceptional Water
+Everything begins with water. Purity, consistency and sensory quality form the foundation of every VIDA product.
+
+### Purposeful Nutrition
+Ingredients must have a reason for being there. Formulation begins with purpose, not trends.
+
+### Disciplined Science
+We believe responsible wellness requires evidence. **VIDA will never make a claim stronger than its evidence.**
+
+### Thoughtful Design
+From formulation to bottle architecture, we believe good design should make everyday experiences better.
+
+**Every milligram earns its place.**
+**Every curve has a purpose.**
+**Every claim must earn its evidence.**
+
+> This is the complete approved text for the principles. Each principle has exactly the sentences above. Do not add supporting statements, data, ingredient lists, testing claims or process descriptions.
+
+---
+
+## Our Portfolio
+
+Heading: **ONE HYDRATION SYSTEM. PURPOSEFULLY DESIGNED.**
+
+### VIDA IMMUNE
+**Everyday hydration. Purposefully supported.**
+A functional hydration concept being developed around essential electrolytes and selected micronutrients for everyday wellness.
+
+### VIDA RADIANCE
+**Hydration meets modern beauty wellness.**
+A sophisticated hydration concept being developed around carefully selected nutritional ingredients, including collagen peptides, hyaluronic acid and vitamin C.
+
+### VIDA EDGE
+**Hydration for the working mind.**
+A performance-oriented hydration concept designed for the rhythm of modern professional life.
+
+### THE VIDA BASE WATER STANDARD
+Every VIDA functional product begins with the same uncompromising foundation: water engineered for purity, consistency and exceptional drinking quality.
+
+**Mandatory disclaimer (verbatim, must accompany any product presentation):**
+_Products shown are currently under development. Final formulations, specifications, availability and permitted claims are subject to technical validation and applicable regulatory approvals._
+
+---
+
+## The Nigerian Opportunity
+
+Heading: **BUILT IN AFRICA. DESIGNED FOR THE WORLD.**
+
+Nigeria is home to one of the world's largest and most dynamic consumer populations.
+
+VIDA sees an opportunity to help shape the next chapter of hydration: moving beyond a category defined primarily by purity, price and availability toward one where **quality, functionality, design and modern wellness** coexist.
+
+We are building from Nigeria with international standards in mind from the beginning.
+
+---
+
+## Partnerships
+
+Heading: **BUILDING WITH THE BEST**
+
+VIDA is developing an international network of specialist partners across formulation, ingredient science, beverage manufacturing, packaging, quality systems and supply chain.
+
+We seek partners who share our commitment to technical excellence, transparency, responsible innovation and long-term value creation.
+
+Our development model combines international technical capability with deep understanding of the African consumer and marketplace.
+
+**We are interested in relationships, not simply transactions.**
+
+Partnership areas:
+- **Manufacturing & OEM Partnerships**
+- **Ingredient & Formulation Partnerships**
+- **Packaging & Engineering**
+- **Distribution & Market Partnerships**
+
+CTA: **PARTNER WITH VIDA →**
+
+Email: hello@vidaspecialities.com
+
+> These are partnership **areas being sought**, not existing partners. Never name or imply specific partner companies.
+
+---
+
+## About VIDA Specialties Limited
+
+Heading: **BUILDING AN AFRICAN INSTITUTION**
+
+VIDA Specialties Limited is a Nigerian consumer wellness company focused on premium hydration and functional beverages.
+
+Our approach combines product development, manufacturing discipline, quality management, regulatory responsibility and distinctive industrial design within a unified institutional framework.
+
+VIDA is being built deliberately: **systems before scale, standards before speed, excellence before expansion.**
+
+> "Our approach combines…" is approved body copy. It stays as written despite the nav rename.
+
+---
+
+## Contact
+
+**VIDA SPECIALTIES LIMITED**
+No. 44 Khartoum Street
+Wuse Zone 5
+Abuja, FCT
+Nigeria
+
+hello@vidaspecialities.com
+Telephone: +234 803 332 2188
+WhatsApp: +234 809 332 2188
+
+**Partnership enquiries:** hello@vidaspecialities.com
+
+---
+
+## Creative direction (not site copy)
+
+Instructions from the PDF to guide design. Do not publish these sentences.
+
+- "The navigation can be remarkably simple." (six items, listed above)
+- "The site should feel like visitors have discovered **an emerging African hydration house**, not a startup landing page."
+- Homepage: "The opening should be almost cinematic." Then "a restrained CTA" (DISCOVER VIDA).
+- "The Living Curve bottle could sit against an enormous field of negative space here. **No need to reveal finished labels yet.**"
+- Our Philosophy: "Then four principles".
+- After the disclaimer: "That is consistent with the regulatory discipline we've built into VIDA." (author's comment)
+- Nigerian Opportunity: "I would absolutely bring some of the new OIPP thinking onto the corporate website—but more elegantly than in the OEM dossier." (author's comment)
+
+## Embedded reference images
+
+The PDF contains two images. Their **text is not approved copy**.
+
+1. **"Section 4 — Vision, Mission & Institutional Philosophy" infographic** (page 1). Includes alternate vision/mission wording (rejected by decision 3), "Our Philosophy" and "Our Belief" statements, six institutional values (Scientific Integrity, Engineering Discipline, Partnership, People & Culture, Continuous Improvement, Integrity) and a footer band (Rooted in Africa, Premium by Design, Evidence Informed, Sustainable Intent, Creates for Generations). None of this text may be used without client approval. Several items (e.g. sustainable sourcing, conscious manufacturing) are claims that would need substantiation.
+2. **"PG-002 The VIDA Design Codex — The Living Curve Refined"** (page 2, embedded at 914×1371px). Bottle concept renders, plus the lines "Forged by water. Crafted for living." and "The quieter the design, the louder the craftsmanship." The collection names ("Signature Collection", "Everyday Collection"), materials and dimensions describe packaging **in development**. Do not present them as product facts.
+   - **Reuse (decision 9):** the main Artifact 002 bottle has been cropped to `src/assets/temporary/living-curve-concept.png` (136×546px, with guide lines outside the silhouette blanked). It is **temporary**: see `docs/design-system.md` → Imagery.

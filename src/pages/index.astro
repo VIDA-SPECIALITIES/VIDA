@@ -1,0 +1,24 @@
+---
+/**
+ * Temporary holding page used while the design foundation is reviewed.
+ * Replace with the approved homepage once page build-out is authorised.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Logo from '../components/Logo.astro';
+import { COMPANY_NAME, PURPOSE } from '../data/site';
+---
+
+<BaseLayout noindex>
+  <main class="container-site grid min-h-dvh place-items-center py-24 text-center">
+    <div class="flex flex-col items-center gap-10">
+      <h1 class="flex flex-col items-center gap-5">
+        <Logo class="w-64 text-navy sm:w-80" decorative />
+        <span class="eyebrow">{COMPANY_NAME}</span>
+      </h1>
+      <p class="eyebrow text-clay-deep">{PURPOSE}</p>
+      <a href="/design-system/" class="eyebrow border-b border-navy/30 pb-1 hover:border-navy">
+        Design system preview
+      </a>
+    </div>
+  </main>
+</BaseLayout>

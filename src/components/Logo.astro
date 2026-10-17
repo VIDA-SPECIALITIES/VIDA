@@ -1,0 +1,28 @@
+---
+/**
+ * VIDA logo, traced 1:1 from the vector paths in
+ * docs/brand-reference/VIDA BRAND LOGO_261016_153631.pdf.
+ * Inherits colour from `currentColor`; brand default is text-navy.
+ *
+ * Default is the wordmark: the supplied lockup artwork's descriptor line reads
+ * "SPECIALITIES LIMITED", which differs from the confirmed company name
+ * (VIDA Specialties Limited). Use the lockup only once corrected artwork is
+ * supplied or the client approves it. Never redraw or retype the descriptor.
+ */
+import Lockup from '../assets/brand/vida-logo-lockup.svg';
+import Wordmark from '../assets/brand/vida-wordmark.svg';
+import { BRAND_NAME, COMPANY_NAME } from '../data/site';
+
+interface Props {
+  variant?: 'wordmark' | 'lockup';
+  class?: string;
+  /** Hide from assistive tech when the name is already given in adjacent text. */
+  decorative?: boolean;
+}
+
+const { variant = 'wordmark', class: className, decorative = false } = Astro.props;
+const Svg = variant === 'lockup' ? Lockup : Wordmark;
+const label = variant === 'lockup' ? COMPANY_NAME : BRAND_NAME;
+---
+
+{decorative ? <Svg class={className} aria-hidden="true" /> : <Svg class={className} aria-label={label} />}

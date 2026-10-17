@@ -1,0 +1,28 @@
+# Build output
+dist/
+.astro/
+.vercel/
+.netlify/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files (may contain secrets)
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Claude Code local-only settings
+.claude/settings.local.json
