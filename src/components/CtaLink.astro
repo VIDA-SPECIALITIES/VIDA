@@ -1,0 +1,32 @@
+---
+/** Restrained call to action: outlined (primary) or underlined text link. */
+interface Props {
+  href: string;
+  variant?: 'outline' | 'text';
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+
+const { href, variant = 'outline', tone = 'light', class: className } = Astro.props;
+const styles = {
+  outline: {
+    light: 'border border-navy px-8 py-4 hover:bg-navy hover:text-mist',
+    dark: 'border border-mist/70 px-8 py-4 text-mist hover:bg-mist hover:text-ink',
+  },
+  text: {
+    light: 'border-b border-navy/30 pb-1.5 hover:border-navy',
+    dark: 'border-b border-mist/40 pb-1.5 text-mist hover:border-mist',
+  },
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'eyebrow inline-flex items-center gap-3 transition-colors duration-500 ease-calm',
+    styles[variant][tone],
+    className,
+  ]}
+>
+  <slot />
+</a>

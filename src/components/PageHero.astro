@@ -1,0 +1,37 @@
+---
+/**
+ * Inner-page opening on the site's editorial grid: index + page name in the
+ * left rail (3 cols), approved heading as h1 across the remaining 9, optional
+ * lead beneath. Mirrors the homepage section rhythm.
+ */
+import { NAV } from '../data/site';
+
+interface Props {
+  /** Page label exactly as in NAV, used for the index number. */
+  page: (typeof NAV)[number]['label'];
+  heading: string;
+}
+
+const { page, heading } = Astro.props;
+const index = String(NAV.findIndex((n) => n.label === page) + 1).padStart(2, '0');
+---
+
+<section class="container-site pt-[clamp(4rem,12vh,9rem)] pb-[clamp(4rem,10vh,7rem)]">
+  <div class="grid items-start gap-y-10 md:grid-cols-12">
+    <p class="eyebrow flex items-center gap-4 text-clay-deep md:col-span-3 md:pt-6" data-reveal>
+      <span class="tabular-nums">{index}</span>
+      <span aria-hidden="true" class="h-px w-8 bg-clay"></span>
+      <span>{page}</span>
+    </p>
+    <div class="md:col-span-9" data-reveal>
+      <h1 class="max-w-[14em] text-display-xl">{heading}</h1>
+      {
+        Astro.slots.has('default') && (
+          <div class="mt-10 max-w-[34rem] text-lead md:mt-14">
+            <slot />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

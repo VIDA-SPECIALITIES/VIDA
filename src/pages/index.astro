@@ -1,24 +1,200 @@
 ---
-/**
- * Temporary holding page used while the design foundation is reviewed.
- * Replace with the approved homepage once page build-out is authorised.
- */
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Logo from '../components/Logo.astro';
-import { COMPANY_NAME, PURPOSE } from '../data/site';
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import CtaLink from '../components/CtaLink.astro';
+import RailLabel from '../components/RailLabel.astro';
+import heroScene from '../assets/renders/vida-hero-coastal-bg.png';
+import bottleGlass from '../assets/renders/vida-artifact-002-glass.png';
+import { DEFAULT_DESCRIPTION, PURPOSE } from '../data/site';
+
+// Index of the other pages; each line is an approved heading from docs/approved-content.md.
+const explore = [
+  { index: '02', label: 'Our Story', href: '/our-story/', line: 'Life, elevated.' },
+  { index: '03', label: 'Our Philosophy', href: '/our-philosophy/', line: 'Everyday doesn’t have to mean ordinary.' },
+  { index: '04', label: 'Our Portfolio', href: '/our-portfolio/', line: 'One hydration system. Purposefully designed.' },
+  { index: '05', label: 'Partnerships', href: '/partnerships/', line: 'Building with the best' },
+];
 ---
 
-<BaseLayout noindex>
-  <main class="container-site grid min-h-dvh place-items-center py-24 text-center">
-    <div class="flex flex-col items-center gap-10">
-      <h1 class="flex flex-col items-center gap-5">
-        <Logo class="w-64 text-navy sm:w-80" decorative />
-        <span class="eyebrow">{COMPANY_NAME}</span>
-      </h1>
-      <p class="eyebrow text-clay-deep">{PURPOSE}</p>
-      <a href="/design-system/" class="eyebrow border-b border-navy/30 pb-1 hover:border-navy">
-        Design system preview
-      </a>
+<SiteLayout description={DEFAULT_DESCRIPTION}>
+  <!--
+    Cinematic hero (client brief 2026-10-18): coastal golden-hour scene with the
+    Living Curve bottle on wet rocks, text left, principles upper right.
+    The header (Header.astro) is untouched and sits above this section.
+    Phones: text on mist above a bottle-centred crop of the same scene.
+  -->
+  <section class="vida-hero relative isolate overflow-hidden bg-mist" aria-labelledby="hero-heading">
+    <div class="relative lg:min-h-[clamp(560px,calc(100svh-4.5rem),900px)]">
+      <!-- Scene -->
+      <div class="relative h-[min(64svh,560px)] md:h-[min(70svh,720px)] lg:absolute lg:inset-0 lg:h-auto">
+        <!--
+          Scene box: keeps the background's 1983:793 aspect and covers the area
+          (like object-cover, anchored at 64% horizontally), so the separate
+          bottle layer can be positioned in the scene's own coordinates.
+        -->
+        <div class="absolute inset-0 overflow-hidden" style="container-type: size">
+          <div
+            class="absolute top-1/2 left-[64%] -translate-x-[64%] -translate-y-1/2"
+            style="width: max(100cqw, calc(100cqh * 1983 / 793)); height: max(100cqh, calc(100cqw * 793 / 1983))"
+          >
+            <Image
+              src={heroScene}
+              alt=""
+              widths={[640, 960, 1280, 1600, 1983]}
+              sizes="(min-width: 640px) 1983px, 1600px"
+              loading="eager"
+              fetchpriority="high"
+              class="absolute inset-0 h-full w-full"
+            />
+            <!-- Bottle layer: client's Artifact 002 bottle, unfiltered, aspect preserved -->
+            <Image
+              src={bottleGlass}
+              alt="The VIDA Artifact 002 Living Curve glass bottle concept, with a black ribbed cap, vertical VIDA emboss and frosted base, standing on wet coastal rocks at golden hour"
+              widths={[240, 400, 566]}
+              sizes="(min-width: 1024px) 12vw, 30vw"
+              loading="eager"
+              class="absolute h-[77.932%] w-auto max-w-none object-contain"
+              style="left: 61.321%; top: 9.836%"
+            />
+          </div>
+        </div>
+        <!-- Legibility scrim behind the text column (desktop only) -->
+        <div
+          aria-hidden="true"
+          class="absolute inset-y-0 left-0 hidden w-[62%] bg-gradient-to-r from-[#eef2f3]/80 via-[#eef2f3]/45 to-transparent lg:block"
+        >
+        </div>
+        <!-- Concept caption (safeguard: the bottle is a concept, not final packaging) -->
+      <p class="absolute right-0 bottom-3 left-0 z-10 lg:bottom-5">
+        <span class="container-site block text-right text-[0.625rem] tracking-[0.2em] text-white uppercase [text-shadow:0_0_6px_rgba(0,0,0,0.85),0_1px_2px_rgba(0,0,0,0.9)]">
+          Bottle concept · in development
+        </span>
+      </p>
+      </div>
+
+      <!-- Content -->
+      <div class="container-site relative z-10 lg:absolute lg:inset-0 lg:flex lg:items-center">
+        <div class="py-12 md:py-14 lg:max-w-[33rem] lg:py-16 xl:max-w-[44rem]" data-reveal>
+          <p class="eyebrow text-[0.8125rem] tracking-[0.3em] text-ink">Honour life.</p>
+          <h1 id="hero-heading" class="mt-5 font-display text-[clamp(2.75rem,1.6rem+4.4vw,5.75rem)] leading-[0.98] tracking-[0.01em] text-ink uppercase">
+            <span class="block">Elevate</span>
+            <span class="block">the everyday</span>
+          </h1>
+          <p class="mt-7 font-display text-[clamp(1.3rem,1.1rem+0.7vw,1.75rem)] leading-snug text-ink">
+            Premium hydration, thoughtfully created for modern living.
+          </p>
+          <p class="mt-5 max-w-[32rem] text-[1.0625rem] leading-relaxed text-ink/85">
+            VIDA Specialties Limited is building a new generation of hydration products from Africa—combining
+            exceptional water, purposeful nutrition, disciplined science and considered design.
+          </p>
+          <a
+            href="/our-story/"
+            class="eyebrow mt-9 inline-flex items-center gap-4 rounded-full bg-[#0f2420] px-9 py-[1.05rem] text-[0.8125rem] tracking-[0.22em] text-white transition-colors duration-500 ease-calm hover:bg-green focus-visible:outline-offset-4"
+          >
+            Discover VIDA <span aria-hidden="true" class="text-base">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Principles (upper right, tablet and up) -->
+      <div class="pointer-events-none absolute top-[clamp(2.5rem,9vh,5.5rem)] right-0 left-0 z-10 hidden lg:block">
+        <div class="container-site flex justify-end">
+          <div class="w-[13.5rem]">
+            <span aria-hidden="true" class="block h-px w-10 bg-ink/70"></span>
+            <ul class="mt-6 space-y-2.5 text-[0.75rem] font-medium tracking-[0.3em] text-ink uppercase">
+              <li>Purposeful nutrition</li>
+              <li>Disciplined science</li>
+              <li>Thoughtful design</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </main>
-</BaseLayout>
+
+    <!-- Principles on phones -->
+    <ul class="container-site flex flex-wrap gap-x-6 gap-y-2 border-t border-navy/15 py-6 text-[0.6875rem] font-medium tracking-[0.24em] text-ink uppercase lg:hidden">
+      <li>Purposeful nutrition</li>
+      <li>Disciplined science</li>
+      <li>Thoughtful design</li>
+    </ul>
+  </section>
+
+  <!-- Introduction -->
+  <section class="container-site py-section">
+    <div class="grid items-start gap-y-10 md:grid-cols-12">
+      <RailLabel class="md:col-span-3 md:pt-5">VIDA</RailLabel>
+      <p class="max-w-[21em] font-display text-display-md md:col-span-9" data-reveal>
+        VIDA Specialties Limited is building a new generation of hydration products from{' '}<span
+          class="whitespace-nowrap">Africa—combining</span
+        >{' '}exceptional water, purposeful nutrition, disciplined science and considered design.
+      </p>
+    </div>
+  </section>
+
+  <!-- Purpose -->
+  <section class="bg-ink text-mist">
+    <div class="container-site grid items-start gap-y-10 py-section md:grid-cols-12">
+      <RailLabel tone="dark" class="md:col-span-3 md:pt-7">Purpose</RailLabel>
+      <p class="font-display text-display-xl italic md:col-span-9" data-reveal>{PURPOSE}</p>
+    </div>
+  </section>
+
+  <!-- The Nigerian Opportunity -->
+  <section class="container-site py-section">
+    <div class="grid items-start gap-y-12 md:grid-cols-12">
+      <RailLabel class="md:col-span-3 md:pt-5">The Nigerian Opportunity</RailLabel>
+      <div class="md:col-span-9">
+        <h2 class="text-display-lg" data-reveal>
+          <span class="block">Built in Africa.</span>
+          <span class="block">Designed for the world.</span>
+        </h2>
+        <div class="mt-14 grid items-start gap-x-12 gap-y-8 lg:grid-cols-2" data-reveal>
+          <p class="font-display text-display-sm">
+            Nigeria is home to one of the world’s largest and most dynamic consumer populations.
+          </p>
+          <div class="space-y-6 text-lead">
+            <p>
+              VIDA sees an opportunity to help shape the next chapter of hydration: moving beyond a category defined
+              primarily by purity, price and availability toward one where <strong class="font-semibold"
+                >quality, functionality, design and modern wellness</strong
+              > coexist.
+            </p>
+            <p>We are building from Nigeria with international standards in mind from the beginning.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Index of the site -->
+  <section class="container-site pb-section">
+    <h2 class="sr-only">Explore VIDA</h2>
+    <ul class="border-t border-navy/25">
+      {
+        explore.map((item) => (
+          <li class="border-b border-navy/15" data-reveal>
+            <a
+              href={item.href}
+              class="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-4 py-8 md:grid-cols-12 md:gap-x-8 md:py-10"
+            >
+              <span class="eyebrow text-navy/70 tabular-nums md:col-span-1">{item.index}</span>
+              <span class="eyebrow col-start-2 row-start-2 mt-3 text-clay-deep md:col-span-2 md:col-start-2 md:row-start-1 md:mt-0">
+                {item.label}
+              </span>
+              <span class="col-start-2 font-display text-display-sm transition-colors duration-500 ease-calm group-hover:text-green md:col-span-8 md:col-start-4 md:text-display-md">
+                {item.line}
+              </span>
+              <span
+                aria-hidden="true"
+                class="col-start-3 row-start-1 text-xl text-navy/70 transition-transform duration-500 ease-calm group-hover:translate-x-1.5 group-hover:text-green md:col-span-1 md:col-start-12 md:justify-self-end"
+              >
+                →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</SiteLayout>

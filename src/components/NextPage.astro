@@ -1,0 +1,53 @@
+---
+/**
+ * Closing link to the next page in the approved navigation order, set as one
+ * large editorial row. Lines are approved headings (docs/approved-content.md).
+ */
+import { NAV } from '../data/site';
+
+interface Props {
+  current: (typeof NAV)[number]['label'];
+}
+
+const LINES: Record<string, string> = {
+  'Our Story': 'Life, elevated.',
+  'Our Philosophy': 'Everyday doesn’t have to mean ordinary.',
+  'Our Portfolio': 'One hydration system. Purposefully designed.',
+  Partnerships: 'Building with the best',
+  Contact: 'Contact',
+};
+
+const i = NAV.findIndex((n) => n.label === Astro.props.current);
+const next = NAV[i + 1];
+---
+
+{
+  next && (
+    <section class="container-site pb-section">
+      <a
+        href={next.href}
+        class="group grid items-baseline gap-y-4 border-t border-navy/25 pt-10 md:grid-cols-12 md:pt-14"
+      >
+        <span class="eyebrow flex flex-wrap items-center gap-x-4 gap-y-2 text-navy/70 md:col-span-3 md:flex-col md:items-start">
+          <span class="flex items-center gap-4">
+            <span class="tabular-nums">{String(i + 2).padStart(2, '0')}</span>
+            <span aria-hidden="true" class="h-px w-8 bg-navy/30" />
+            <span>Next</span>
+          </span>
+          <span class="text-clay-deep">{next.label}</span>
+        </span>
+        <span class="flex items-baseline justify-between gap-8 md:col-span-9">
+          <span class="font-display text-display-lg transition-colors duration-500 ease-calm group-hover:text-green">
+            {LINES[next.label]}
+          </span>
+          <span
+            aria-hidden="true"
+            class="text-2xl text-navy/70 transition-transform duration-500 ease-calm group-hover:translate-x-2 group-hover:text-green"
+          >
+            →
+          </span>
+        </span>
+      </a>
+    </section>
+  )
+}

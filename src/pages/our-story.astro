@@ -1,0 +1,103 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import RailLabel from '../components/RailLabel.astro';
+import NextPage from '../components/NextPage.astro';
+import { COMPANY_NAME, MISSION, PURPOSE, VISION } from '../data/site';
+
+const statements = [
+  { label: 'Vision', text: VISION },
+  { label: 'Mission', text: MISSION },
+  { label: 'Purpose', text: PURPOSE },
+];
+
+const principles = ['systems before scale', 'standards before speed', 'excellence before expansion'];
+---
+
+<SiteLayout
+  title="Our Story"
+  description="VIDA means life. VIDA was founded in Nigeria with a simple ambition: to elevate hydration beyond the ordinary."
+>
+  <PageHero page="Our Story" heading="Life, elevated.">
+    <p class="font-display text-display-sm">VIDA means <em class="text-green">life</em>.</p>
+  </PageHero>
+
+  <!-- Story -->
+  <section class="container-site pb-section">
+    <div class="grid items-start gap-y-12 border-t border-navy/15 pt-16 md:grid-cols-12 md:pt-24">
+      <p class="font-display text-display-md md:sticky md:top-32 md:col-span-5" data-reveal>
+        That simple idea sits at the heart of everything we create.
+      </p>
+      <div class="space-y-6 text-lead md:col-span-6 md:col-start-7" data-reveal>
+        <p>
+          Water is one of life’s most fundamental necessities. Yet we believe water should do more than just quench
+          thirst.
+        </p>
+        <p>VIDA was founded in Nigeria with a simple ambition: to elevate hydration beyond the ordinary.</p>
+        <p>
+          We are bringing together water science, purposeful nutrition, disciplined product development and thoughtful
+          design to create hydration products for the way people live today.
+        </p>
+        <p>
+          Our ambition extends beyond creating another bottled-water brand. We are building a modern African hydration
+          company with the standards, systems and imagination to serve consumers at home and, ultimately, around the
+          world.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision, Mission, Purpose -->
+  <section class="bg-paper">
+    <div class="container-site py-section">
+      <h2 class="sr-only">Vision, mission and purpose</h2>
+      <dl class="border-t border-navy/20">
+        {
+          statements.map((s) => (
+            <div class="grid items-baseline gap-y-4 border-b border-navy/15 py-12 md:grid-cols-12 md:py-14" data-reveal>
+              <dt class="md:col-span-3">
+                <RailLabel>{s.label}</RailLabel>
+              </dt>
+              <dd class="max-w-[30em] font-display text-display-sm italic md:col-span-9">
+                {s.text}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="container-site py-section">
+    <div class="grid items-start gap-y-10 md:grid-cols-12">
+      <RailLabel class="md:col-span-3 md:pt-5">About {COMPANY_NAME}</RailLabel>
+      <div class="md:col-span-9" data-reveal>
+        <h2 class="text-display-lg">Building an African institution</h2>
+        <div class="mt-12 grid gap-x-12 gap-y-6 text-lead lg:grid-cols-2">
+          <p>
+            {COMPANY_NAME} is a Nigerian consumer wellness company focused on premium hydration and functional
+            beverages.
+          </p>
+          <p>
+            Our approach combines product development, manufacturing discipline, quality management, regulatory
+            responsibility and distinctive industrial design within a unified institutional framework.
+          </p>
+        </div>
+        <p class="mt-16 text-lead">VIDA is being built deliberately:</p>
+        <ol class="mt-6 grid border-t border-navy/25 md:grid-cols-3">
+          {
+            principles.map((p, i) => (
+              <li class="border-b border-navy/15 py-8 md:border-r md:border-b-0 md:px-8 md:first:pl-0 md:last:border-r-0">
+                <span class="eyebrow block text-navy/70 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                <span class="mt-5 block font-display text-display-sm first-letter:uppercase">{p}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <NextPage current="Our Story" />
+</SiteLayout>

@@ -1,0 +1,34 @@
+---
+/**
+ * Living Curve bottle concept standing on a horizon hairline, captioned as a
+ * concept in development. Uses the TEMPORARY low-resolution render, so it is
+ * capped at 273px tall (crisp at 2x). Must sit on bg-mist.
+ */
+import { Image } from 'astro:assets';
+import render from '../assets/temporary/living-curve-concept.png';
+
+interface Props {
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { class: className, loading = 'lazy' } = Astro.props;
+---
+
+<figure class:list={['flex flex-col', className]}>
+  <div class="flex justify-center pt-16">
+    <Image
+      src={render}
+      alt="Living Curve bottle concept, a clear glass bottle with a curved silhouette"
+      width={68}
+      densities={[1, 2]}
+      loading={loading}
+      class="block h-[min(273px,40svh)] w-auto"
+    />
+  </div>
+  <figcaption
+    class="eyebrow border-t border-navy/25 pt-5 text-center text-[0.625rem] text-navy/70"
+  >
+    Bottle concept · in development
+  </figcaption>
+</figure>

@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 import { loadEnv } from 'vite';
 
 // The production domain has not been decided. Set SITE_URL (in the shell or a
 // local .env file, see .env.example) once it is. While unset, `site` stays
-// undefined and no canonical / og:url tags are emitted. Never hard-code a guess.
+// undefined: no canonical / og:url tags and no sitemap are emitted. Never
+// hard-code a guess.
 const { SITE_URL } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
 
 /** @param {string | undefined} value */
@@ -18,9 +20,13 @@ function parseSiteUrl(value) {
   }
 }
 
+const site = parseSiteUrl(SITE_URL);
+
 // https://astro.build/config
 export default defineConfig({
-  site: parseSiteUrl(SITE_URL),
+  site,
+  trailingSlash: 'always',
+  integrations: site ? [sitemap({ filter: (page) => !page.includes('/design-system/') })] : [],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,0 +1,61 @@
+---
+import Logo from './Logo.astro';
+import { COMPANY_NAME, CONTACT, NAV, PURPOSE } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-mist">
+  <div class="container-site grid gap-16 pt-24 pb-12 md:grid-cols-12 md:gap-8">
+    <div class="space-y-8 md:col-span-5">
+      <Logo class="h-[30px] w-auto text-mist" decorative />
+      <p class="eyebrow text-mist/80">{COMPANY_NAME}</p>
+      <p class="max-w-xs font-display text-display-sm text-mist/90 italic">{PURPOSE}</p>
+    </div>
+
+    <nav aria-label="Footer" class="md:col-span-3">
+      <p class="eyebrow mb-6 text-clay">Explore</p>
+      <ul class="space-y-3 text-sm">
+        {
+          NAV.map((item) => (
+            <li>
+              <a href={item.href} class="text-mist/80 transition-colors hover:text-mist">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="md:col-span-4">
+      <p class="eyebrow mb-6 text-clay">Contact</p>
+      <address class="space-y-5 text-sm not-italic text-mist/80">
+        <p>
+          {
+            CONTACT.addressLines.map((line) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))
+          }
+        </p>
+        <p class="space-y-1">
+          <a href={`mailto:${CONTACT.email}`} class="block hover:text-mist">{CONTACT.email}</a>
+          <a href={CONTACT.telephone.href} class="block hover:text-mist">Telephone: {CONTACT.telephone.display}</a>
+          <a href={CONTACT.whatsapp.href} class="block hover:text-mist" rel="noopener">
+            WhatsApp: {CONTACT.whatsapp.display}
+          </a>
+        </p>
+      </address>
+    </div>
+  </div>
+
+  <div class="container-site">
+    <div class="flex flex-col gap-3 border-t border-mist/10 py-8 text-xs text-mist/60 sm:flex-row sm:justify-between">
+      <p>© {year} {COMPANY_NAME}</p>
+      <p>Abuja · Nigeria</p>
+    </div>
+  </div>
+</footer>

@@ -1,19 +1,37 @@
 ---
 import '../styles/global.css';
-import { COMPANY_NAME, DEFAULT_DESCRIPTION } from '../data/site';
+import { COMPANY_NAME, CONTACT, DEFAULT_DESCRIPTION, INDEXING_APPROVED } from '../data/site';
 
 interface Props {
   /** Page name, e.g. "Our Story". Omit on the homepage. */
   title?: string;
   description?: string;
-  /** Keep internal/work-in-progress pages out of search engines. */
+  /** Force noindex for an individual page (e.g. internal pages). */
   noindex?: boolean;
 }
 
 const { title, description = DEFAULT_DESCRIPTION, noindex = false } = Astro.props;
 const fullTitle = title ? `${title} | ${COMPANY_NAME}` : COMPANY_NAME;
+const robotsNoindex = noindex || !INDEXING_APPROVED;
 // Only available once SITE_URL is configured (see astro.config.mjs).
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+
+// Organisation facts are limited to approved contact details.
+const organisation = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: COMPANY_NAME,
+  email: CONTACT.email,
+  telephone: CONTACT.telephone.display.replace(/\s/g, ''),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${CONTACT.addressLines[0]}, ${CONTACT.addressLines[1]}`,
+    addressLocality: 'Abuja',
+    addressRegion: 'FCT',
+    addressCountry: 'NG',
+  },
+  ...(Astro.site ? { url: new URL('/', Astro.site).href } : {}),
+};
 ---
 
 <!doctype html>
@@ -24,7 +42,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#edeff0" />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {robotsNoindex && <meta name="robots" content="noindex, nofollow" />}
     {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -35,7 +53,12 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_NG" />
     {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
     <meta name="generator" content={Astro.generator} />
+    <script type="application/ld+json" set:html={JSON.stringify(organisation)} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body class="min-h-dvh bg-mist text-navy">
     <slot />

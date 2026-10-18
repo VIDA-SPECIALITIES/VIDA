@@ -1,0 +1,12 @@
+# Netlify response headers (copied into dist/ at build time).
+# Preview phase: keep every page out of search engines at the server level too.
+# Remove the X-Robots-Tag line at launch, together with INDEXING_APPROVED = true
+# in src/data/site.ts.
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Fingerprinted build assets never change, so they can be cached for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

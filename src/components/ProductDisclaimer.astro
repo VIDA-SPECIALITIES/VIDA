@@ -1,0 +1,13 @@
+---
+/** Mandatory product-development disclaimer (verbatim from approved content). */
+import { PRODUCT_DISCLAIMER } from '../data/site';
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<aside aria-label="Product development notice" class:list={['border-l-2 border-clay py-1 pl-5', className]}>
+  <p class="text-sm leading-relaxed text-navy/80 italic">{PRODUCT_DISCLAIMER}</p>
+</aside>

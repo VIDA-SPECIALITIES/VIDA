@@ -1,0 +1,288 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import RailLabel from '../components/RailLabel.astro';
+import { COMPANY_NAME, CONTACT } from '../data/site';
+
+/*
+ * No message delivery is configured for this static site. The form validates
+ * input, then prepares a pre-filled email in the visitor's own email app
+ * (mailto:). It never claims to have sent anything. Replace with a tested
+ * delivery endpoint only once one is configured.
+ */
+const enquiryTypes = [
+  { value: 'general', label: 'General enquiry' },
+  { value: 'partnership', label: 'Partnership enquiry' },
+];
+const partnershipAreas = [
+  'Manufacturing & OEM Partnerships',
+  'Ingredient & Formulation Partnerships',
+  'Packaging & Engineering',
+  'Distribution & Market Partnerships',
+];
+
+const field =
+  'block w-full border-0 border-b border-navy/40 bg-transparent px-0 py-3 text-base text-navy placeholder:text-navy/50 focus:border-green aria-[invalid=true]:border-clay-deep';
+const label = 'eyebrow block text-navy/80';
+const error = 'field-error mt-2 hidden text-sm text-clay-deep';
+---
+
+<SiteLayout
+  title="Contact"
+  description={`Contact ${COMPANY_NAME}: No. 44 Khartoum Street, Wuse Zone 5, Abuja, FCT, Nigeria. Email ${CONTACT.email}.`}
+>
+  <PageHero page="Contact" heading="Contact" />
+
+  <section class="container-site pb-section">
+    <div class="grid gap-20 border-t border-navy/15 pt-16 md:pt-24 lg:grid-cols-12 lg:gap-8">
+      <!-- Approved contact details -->
+      <div class="space-y-12 lg:col-span-4" data-reveal>
+        <RailLabel as="h2">{COMPANY_NAME}</RailLabel>
+        <address class="space-y-10 not-italic">
+          <p class="font-display text-display-sm">
+            {
+              CONTACT.addressLines.map((line) => (
+                <>
+                  {line}
+                  <br />
+                </>
+              ))
+            }
+          </p>
+          <dl class="space-y-6">
+            <div>
+              <dt class="eyebrow text-navy/75">Email</dt>
+              <dd class="mt-1">
+                <a href={`mailto:${CONTACT.email}`} class="text-green underline-offset-4 hover:underline">{CONTACT.email}</a>
+              </dd>
+            </div>
+            <div>
+              <dt class="eyebrow text-navy/75">Telephone</dt>
+              <dd class="mt-1">
+                <a href={CONTACT.telephone.href} class="text-green underline-offset-4 hover:underline">{CONTACT.telephone.display}</a>
+              </dd>
+            </div>
+            <div>
+              <dt class="eyebrow text-navy/75">WhatsApp</dt>
+              <dd class="mt-1">
+                <a href={CONTACT.whatsapp.href} rel="noopener" class="text-green underline-offset-4 hover:underline"
+                  >{CONTACT.whatsapp.display}</a
+                >
+              </dd>
+            </div>
+            <div>
+              <dt class="eyebrow text-navy/75">Partnership enquiries</dt>
+              <dd class="mt-1">
+                <a href={`mailto:${CONTACT.partnershipEmail}`} class="text-green underline-offset-4 hover:underline"
+                  >{CONTACT.partnershipEmail}</a
+                >
+              </dd>
+            </div>
+          </dl>
+        </address>
+      </div>
+
+      <!-- Enquiry form (prepares an email; does not send) -->
+      <div id="enquiry" class="scroll-mt-28 lg:col-span-7 lg:col-start-6" data-reveal>
+        <h2 class="font-display text-display-md">Write to us</h2>
+        <p class="mt-4 max-w-prose text-sm text-navy/80" id="form-note">
+          This form does not send messages from the website. When you select “Prepare email”, your email application
+          opens with your message addressed to {CONTACT.email}, ready for you to review and send.
+        </p>
+
+        <div
+          id="error-summary"
+          class="mt-10 hidden border-l-2 border-clay-deep bg-paper p-6"
+          role="alert"
+          tabindex="-1"
+          aria-labelledby="error-summary-title"
+        >
+          <p id="error-summary-title" class="font-medium">Please check the following:</p>
+          <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-clay-deep"></ul>
+        </div>
+
+        <form
+          id="contact-form"
+          class="mt-12 grid gap-10 sm:grid-cols-2"
+          action={`mailto:${CONTACT.email}`}
+          method="post"
+          enctype="text/plain"
+          aria-describedby="form-note"
+        >
+          <div>
+            <label for="name" class={label}>Name <span aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" class={field} aria-describedby="name-error" />
+            <p id="name-error" class={error}></p>
+          </div>
+
+          <div>
+            <label for="email" class={label}>Email <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength="200" class={field} aria-describedby="email-error" />
+            <p id="email-error" class={error}></p>
+          </div>
+
+          <div>
+            <label for="organisation" class={label}>Organisation <span class="normal-case tracking-normal text-navy/70">(optional)</span></label>
+            <input id="organisation" name="organisation" type="text" autocomplete="organization" maxlength="150" class={field} aria-describedby="organisation-error" />
+            <p id="organisation-error" class={error}></p>
+          </div>
+
+          <div>
+            <label for="enquiry-type" class={label}>Enquiry <span aria-hidden="true">*</span></label>
+            <select id="enquiry-type" name="enquiry" required class={field} aria-describedby="enquiry-type-error">
+              <option value="">Select an option</option>
+              {enquiryTypes.map((t) => <option value={t.value}>{t.label}</option>)}
+              <optgroup label="Partnership areas">
+                {partnershipAreas.map((a) => <option value={a}>{a}</option>)}
+              </optgroup>
+            </select>
+            <p id="enquiry-type-error" class={error}></p>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="message" class={label}>Message <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" required minlength="20" maxlength="1500" class:list={[field, 'resize-y']} aria-describedby="message-hint message-error"></textarea>
+            <p id="message-hint" class="mt-2 text-xs text-navy/70">
+              Between 20 and 1,500 characters. <span id="message-count" aria-live="polite"></span>
+            </p>
+            <p id="message-error" class={error}></p>
+          </div>
+
+          <p class="text-xs text-navy/70 sm:col-span-2"><span aria-hidden="true">*</span> Required</p>
+
+          <div class="flex flex-col items-start gap-6 sm:col-span-2">
+            <button
+              type="submit"
+              class="eyebrow inline-flex items-center gap-3 border border-navy px-8 py-4 transition-colors duration-500 ease-calm hover:bg-navy hover:text-mist"
+            >
+              Prepare email
+            </button>
+            <div id="form-status" role="status" class="hidden max-w-prose border-l-2 border-green pl-5 text-sm">
+              <p>
+                Your email application should now open with your message, ready to send. Nothing has been sent yet.
+              </p>
+              <p class="mt-2">
+                If it did not open, <a id="mailto-fallback" href={`mailto:${CONTACT.email}`} class="text-green underline">open the prepared email</a>
+                or write to <a href={`mailto:${CONTACT.email}`} class="text-green underline">{CONTACT.email}</a> directly.
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<script>
+  import { CONTACT } from '../data/site';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const summary = document.getElementById('error-summary');
+  const status = document.getElementById('form-status');
+  const fallback = document.getElementById('mailto-fallback') as HTMLAnchorElement | null;
+  const count = document.getElementById('message-count');
+
+  type Field = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  const rules: Record<string, (v: string) => string> = {
+    name: (v) => (v.length < 2 ? 'Enter your name.' : ''),
+    email: (v) => (!v ? 'Enter your email address.' : !EMAIL.test(v) ? 'Enter an email address in the format name@example.com.' : ''),
+    organisation: () => '',
+    'enquiry-type': (v) => (!v ? 'Select the type of enquiry.' : ''),
+    message: (v) =>
+      v.length < 20
+        ? 'Enter a message of at least 20 characters.'
+        : v.length > 1500
+          ? 'Shorten your message to 1,500 characters or fewer.'
+          : '',
+  };
+
+  if (form && summary && status) {
+    form.noValidate = true; // replace native bubbles with accessible inline errors
+    let attempted = false;
+
+    const fields = Object.keys(rules)
+      .map((id) => document.getElementById(id) as Field | null)
+      .filter((f): f is Field => !!f);
+
+    // Preselect enquiry type from ?enquiry=partnership (Partnerships page CTA).
+    const preset = new URLSearchParams(location.search).get('enquiry');
+    const select = document.getElementById('enquiry-type') as HTMLSelectElement | null;
+    if (preset && select && [...select.options].some((o) => o.value === preset)) select.value = preset;
+
+    const message = document.getElementById('message') as HTMLTextAreaElement | null;
+    const updateCount = () => {
+      if (message && count) count.textContent = `${message.value.trim().length} / 1,500`;
+    };
+    message?.addEventListener('input', updateCount);
+    updateCount();
+
+    const validate = (f: Field) => {
+      const msg = rules[f.id](f.value.trim());
+      const out = document.getElementById(`${f.id}-error`);
+      f.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (out) {
+        out.textContent = msg;
+        out.classList.toggle('hidden', !msg);
+      }
+      return msg;
+    };
+
+    fields.forEach((f) =>
+      f.addEventListener(f.tagName === 'SELECT' ? 'change' : 'blur', () => attempted && validate(f)),
+    );
+    fields.forEach((f) => f.addEventListener('input', () => attempted && f.getAttribute('aria-invalid') === 'true' && validate(f)));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      attempted = true;
+      status.classList.add('hidden');
+      const errors = fields
+        .map((f) => ({ f, msg: validate(f) }))
+        .filter((x) => x.msg);
+
+      const list = summary.querySelector('ul');
+      if (errors.length && list) {
+        list.innerHTML = '';
+        for (const { f, msg } of errors) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `#${f.id}`;
+          a.textContent = msg;
+          a.className = 'underline';
+          a.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            f.focus();
+          });
+          li.append(a);
+          list.append(li);
+        }
+        summary.classList.remove('hidden');
+        summary.focus();
+        return;
+      }
+      summary.classList.add('hidden');
+
+      const get = (id: string) => (document.getElementById(id) as Field).value.trim();
+      const typeSelect = document.getElementById('enquiry-type') as HTMLSelectElement;
+      const typeLabel = typeSelect.options[typeSelect.selectedIndex]?.text ?? '';
+      const subject = `${typeLabel}: ${get('name')}`;
+      const body = [
+        `Name: ${get('name')}`,
+        `Email: ${get('email')}`,
+        get('organisation') ? `Organisation: ${get('organisation')}` : '',
+        `Enquiry: ${typeLabel}`,
+        '',
+        get('message'),
+      ]
+        .filter((line, i) => line !== '' || i === 4)
+        .join('\n');
+
+      const href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (fallback) fallback.href = href;
+      status.classList.remove('hidden');
+      window.location.href = href;
+    });
+  }
+</script>

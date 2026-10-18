@@ -1,0 +1,89 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import RailLabel from '../components/RailLabel.astro';
+import { CONTACT } from '../data/site';
+
+// Partnership areas being sought (not existing partners).
+const areas = [
+  'Manufacturing & OEM Partnerships',
+  'Ingredient & Formulation Partnerships',
+  'Packaging & Engineering',
+  'Distribution & Market Partnerships',
+];
+---
+
+<SiteLayout
+  title="Partnerships"
+  description="VIDA is developing an international network of specialist partners across formulation, ingredient science, beverage manufacturing, packaging, quality systems and supply chain."
+>
+  <PageHero page="Partnerships" heading="Building with the best">
+    <p>
+      VIDA is developing an international network of specialist partners across formulation, ingredient science,
+      beverage manufacturing, packaging, quality systems and supply chain.
+    </p>
+  </PageHero>
+
+  <section class="container-site pb-section">
+    <div class="grid items-start gap-y-12 border-t border-navy/15 pt-16 md:grid-cols-12 md:pt-24">
+      <div class="grid gap-x-12 gap-y-6 text-lead md:col-span-9 md:col-start-4 lg:grid-cols-2" data-reveal>
+        <p>
+          We seek partners who share our commitment to technical excellence, transparency, responsible innovation and
+          long-term value creation.
+        </p>
+        <p>
+          Our development model combines international technical capability with deep understanding of the African
+          consumer and marketplace.
+        </p>
+      </div>
+      <blockquote class="md:col-span-9 md:col-start-4" data-reveal>
+        <p class="max-w-[18em] border-l-2 border-green pl-8 font-display text-display-lg italic">
+          We are interested in relationships, not simply transactions.
+        </p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="bg-paper">
+    <div class="container-site grid items-start gap-y-10 py-section md:grid-cols-12">
+      <RailLabel as="h2" class="md:col-span-3 md:pt-10">Partnership areas</RailLabel>
+      <ol class="border-t border-navy/20 md:col-span-9">
+        {
+          areas.map((area, i) => (
+            <li class="grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-navy/15 py-8 md:py-10" data-reveal>
+              <span class="eyebrow text-navy/70 tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-display text-display-md">{area}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-green text-mist">
+    <div class="container-site grid items-start gap-y-10 py-section md:grid-cols-12" data-reveal>
+      <p class="eyebrow flex items-center gap-4 text-mist md:col-span-3 md:pt-8">
+        <span aria-hidden="true" class="h-px w-8 bg-mist/60"></span>Partnership enquiries
+      </p>
+      <div class="space-y-10 md:col-span-9">
+        <h2 class="text-display-xl">
+          <a
+            href="/contact/?enquiry=partnership#enquiry"
+            class="group inline-flex items-baseline gap-6 decoration-mist/40 decoration-1 underline-offset-[0.18em] hover:underline"
+          >
+            Partner with VIDA
+            <span aria-hidden="true" class="transition-transform duration-500 ease-calm group-hover:translate-x-2">→</span>
+          </a>
+        </h2>
+        <p class="text-lead">
+          Email: <a
+            href={`mailto:${CONTACT.partnershipEmail}`}
+            class="underline decoration-mist/50 underline-offset-4 hover:decoration-mist">{CONTACT.partnershipEmail}</a
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

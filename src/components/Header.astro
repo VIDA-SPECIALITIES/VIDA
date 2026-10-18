@@ -1,0 +1,127 @@
+---
+import Logo from './Logo.astro';
+import { COMPANY_NAME, NAV } from '../data/site';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header
+  class="site-header sticky top-0 z-50 border-b border-transparent bg-mist/95 backdrop-blur-md transition-colors duration-500 ease-calm data-[scrolled]:border-mist-deep"
+>
+  <div class="container-site flex h-18 items-center justify-between gap-8">
+    <a href="/" class="group flex items-center gap-5 py-4" aria-label={`${COMPANY_NAME}, home`}>
+      <Logo class="h-[22px] w-auto text-navy" decorative />
+      <span
+        class="eyebrow hidden border-l border-navy/20 pl-5 text-[0.625rem] tracking-[0.28em] text-navy/75 xl:inline"
+      >
+        {COMPANY_NAME}
+      </span>
+    </a>
+
+    <nav aria-label="Primary" class="nav-desktop hidden lg:block">
+      <ul class="flex items-center gap-8 xl:gap-10">
+        {
+          NAV.filter((item) => item.href !== '/').map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class="eyebrow relative py-2 tracking-[var(--tracking-nav)] text-navy/80 transition-colors duration-500 ease-calm after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-green after:transition-transform after:duration-500 after:ease-calm hover:text-navy hover:after:scale-x-100 aria-[current=page]:text-navy aria-[current=page]:after:scale-x-100"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="menu-toggle eyebrow -mr-3 flex items-center gap-3 px-3 py-3 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="menu-label">Menu</span>
+      <span aria-hidden="true" class="flex w-6 flex-col gap-[5px]">
+        <span class="h-px w-full bg-current"></span>
+        <span class="h-px w-2/3 self-end bg-current"></span>
+      </span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="mobile-menu fixed inset-0 top-18 z-40 hidden h-[calc(100dvh-4.5rem)] overflow-y-auto bg-ink text-mist lg:hidden"
+  >
+    <nav aria-label="Primary (mobile)" class="container-site flex min-h-full flex-col justify-between py-12">
+      <ul class="space-y-2">
+        {
+          NAV.map((item, i) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class="group flex items-baseline gap-5 border-b border-mist/10 py-4 font-display text-display-sm text-mist/85 hover:text-mist aria-[current=page]:text-mist"
+              >
+                <span class="eyebrow w-6 text-clay tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="eyebrow mt-12 text-mist/70">{COMPANY_NAME}</p>
+    </nav>
+  </div>
+
+  <noscript>
+    <style>
+      .nav-desktop {
+        display: block !important;
+      }
+      .nav-desktop ul {
+        flex-wrap: wrap;
+        gap: 0.25rem 1.25rem;
+        justify-content: flex-end;
+      }
+      .menu-toggle {
+        display: none !important;
+      }
+    </style>
+  </noscript>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const label = toggle?.querySelector('.menu-label');
+  const outside = [document.getElementById('main'), document.querySelector('footer')];
+
+  function setOpen(open: boolean) {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('hidden', !open);
+    document.documentElement.classList.toggle('overflow-hidden', open);
+    outside.forEach((el) => el?.toggleAttribute('inert', open));
+    if (label) label.textContent = open ? 'Close' : 'Menu';
+    if (open) menu.querySelector<HTMLElement>('a')?.focus();
+  }
+
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  // Hairline under the header only once the page has scrolled.
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const onScroll = () => header?.toggleAttribute('data-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Close if the viewport grows past the mobile breakpoint while open.
+  window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => e.matches && setOpen(false));
+</script>

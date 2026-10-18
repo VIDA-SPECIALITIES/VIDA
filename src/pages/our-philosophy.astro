@@ -1,0 +1,85 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import NextPage from '../components/NextPage.astro';
+import Outline from '../assets/brand/living-curve-outline.svg';
+
+// The four principles, verbatim (decision 11: nothing added to fill space).
+const principles = [
+  {
+    name: 'Exceptional Water',
+    body: 'Everything begins with water. Purity, consistency and sensory quality form the foundation of every VIDA product.',
+  },
+  {
+    name: 'Purposeful Nutrition',
+    body: 'Ingredients must have a reason for being there. Formulation begins with purpose, not trends.',
+  },
+  {
+    name: 'Disciplined Science',
+    body: 'We believe responsible wellness requires evidence.',
+    emphasis: 'VIDA will never make a claim stronger than its evidence.',
+  },
+  {
+    name: 'Thoughtful Design',
+    body: 'From formulation to bottle architecture, we believe good design should make everyday experiences better.',
+  },
+];
+
+const lines = ['Every milligram earns its place.', 'Every curve has a purpose.', 'Every claim must earn its evidence.'];
+---
+
+<SiteLayout
+  title="Our Philosophy"
+  description="Every milligram earns its place. Every curve has a purpose. Every claim must earn its evidence."
+>
+  <PageHero page="Our Philosophy" heading="Everyday doesn’t have to mean ordinary." />
+
+  <!-- Four principles: a 2×2 index on the page grid -->
+  <section class="container-site pb-section">
+    <h2 class="sr-only">Four principles</h2>
+    <ol class="grid gap-x-8 md:grid-cols-12">
+      {
+        principles.map((p, i) => (
+          <li
+            class:list={[
+              'grid grid-cols-[2.5rem_1fr] gap-x-4 border-t border-navy/20 pt-8 pb-14 md:col-span-6 md:grid-cols-6 md:gap-x-8 md:pt-10 md:pb-20',
+            ]}
+            data-reveal
+          >
+            <span class="eyebrow pt-3 text-clay-deep tabular-nums md:col-span-1">{String(i + 1).padStart(2, '0')}</span>
+            <div class="space-y-5 md:col-span-5">
+              <h3 class="text-display-md">{p.name}</h3>
+              <p class="max-w-[30rem] text-lead">
+                {p.body}
+                {p.emphasis && <strong class="font-semibold"> {p.emphasis}</strong>}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- Every milligram, every curve, every claim -->
+  <section class="bg-ink text-mist">
+    <div class="container-site grid items-center gap-y-16 py-section md:grid-cols-12">
+      <h2 class="sr-only">Our standard</h2>
+      <ul class="space-y-5 md:col-span-10 md:space-y-7">
+        {
+          lines.map((line) => (
+            <li class="font-display text-display-lg" data-reveal>
+              {line}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="hidden justify-end md:col-span-2 md:flex" data-reveal>
+        <Outline aria-hidden="true" class="h-[min(440px,56vh)] w-auto text-clay/70" />
+      </div>
+    </div>
+  </section>
+
+  <div class="pt-section">
+    <NextPage current="Our Philosophy" />
+  </div>
+</SiteLayout>

@@ -1,0 +1,19 @@
+---
+/** Section label for the left rail of the editorial grid (hairline + eyebrow). */
+interface Props {
+  tone?: 'light' | 'dark';
+  class?: string;
+  as?: 'p' | 'h2';
+}
+const { tone = 'light', class: className, as: Tag = 'p' } = Astro.props;
+---
+
+<Tag
+  class:list={[
+    'eyebrow flex items-center gap-4',
+    tone === 'light' ? 'text-clay-deep' : 'text-clay',
+    className,
+  ]}
+>
+  <span aria-hidden="true" class="h-px w-8 shrink-0 bg-clay"></span><slot />
+</Tag>

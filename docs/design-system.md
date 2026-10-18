@@ -115,35 +115,51 @@ Scale (fluid, defined in `@theme`):
 
 | Token | Size | Leading | Use |
 |---|---|---|---|
-| `text-display-xl` | 48 → 120px | 0.95 | Homepage hero only |
-| `text-display-lg` | 40 → 80px | 1.0 | Page heroes |
-| `text-display-md` | 32 → 52px | 1.08 | Section headings, principles |
-| `text-display-sm` | 24 → 34px | 1.2 | Sub-sections, product names |
+| `text-hero` | 48 → 104px (`1.5rem + 5vw`), −0.015em | 1.0 | Homepage h1 only. Sized so "Elevate the everyday" holds one line from tablet up |
+| `text-display-xl` | 44 → 96px, −0.012em | 1.0 | Inner-page h1, Purpose statement, Partner with VIDA |
+| `text-display-lg` | 38 → 72px, −0.01em | 1.04 | Section h2, the "Every…" lines, next-page links |
+| `text-display-md` | 30 → 48px | 1.12 | Intro paragraph, principle names, partnership areas |
+| `text-display-sm` | 24 → 32px | 1.22 | Vision/mission statements, product names, lead quotes |
+| `text-lead` | 17 → 19px | 1.7 | Lead body paragraphs |
 | base | 16px | 1.7 | Body |
 | `eyebrow` utility | 12px, 500, uppercase, 0.24em tracking | 1.4 | Section labels, nav, CTAs |
 
+Headline line breaks are set deliberately (one `<span class="block">` per line, `md:whitespace-nowrap` on the homepage hero). Don't let them reflow by accident.
+
 ## Layout and spacing
 
+- **Editorial grid:** 12 columns. Section labels sit in a **left rail (cols 1–3)** via `RailLabel`; headings and body run in **cols 4–12**. Page heroes, homepage sections, Vision/Mission/Purpose, About, Partnership areas and the next-page link all share this rail.
+- **Hairline rhythm:** sections and lists are divided by `border-navy/15–25` hairlines inside the container, not by boxes or cards.
 - `container-site` utility: max width 80rem, fluid gutters (`--spacing-gutter`, 20 → 48px).
-- `max-w-prose` (40rem) for running text.
+- Running text is capped at about 30–34rem (`max-w-[30rem]`, `text-lead`).
 - `py-section` (96 → 192px) between major sections.
-- Mobile-first. No horizontal scroll at 360px.
+- Mobile-first. No horizontal scroll at 360px. The rail collapses above its content on phones.
+- **Small-text contrast:** use no lighter than `text-navy/70` (4.6:1 on mist) for text under 24px. `navy/60` is only 3.5:1.
 
-## Components (proposed; build when pages are authorised)
+## Components (built)
 
 - **Primary CTA** ("DISCOVER VIDA"): outlined, eyebrow text, slow fill on hover. Never a filled bright button.
 - **Text link CTA** ("PARTNER WITH VIDA →"): eyebrow text with an underline hairline.
-- **Header**: wordmark on the left, six nav items in eyebrow style (Home · Our Story · Our Philosophy · Our Portfolio · Partnerships · Contact), collapsing to a full-screen menu on mobile.
+- **Header**: 72px tall. The wordmark plus "VIDA Specialties Limited" set as text (xl and up) on the left, five nav links in eyebrow style on the right (Home is the wordmark), collapsing to a full-screen menu on mobile. The bottom hairline appears only after scrolling.
+- **RailLabel** (`RailLabel.astro`): clay hairline + eyebrow for the left rail (`tone="dark"` on ink).
+- **NextPage** (`NextPage.astro`): closes each inner page except Partnerships (which ends with Partner with VIDA) and Contact. A hairline row with the index + "Next" + page name in the rail and the next page's approved heading at `text-display-lg`.
 - **Footer** (ink): wordmark, "VIDA Specialties Limited" as text, approved contact details, © year.
-- **Principle card** (Our Philosophy): one of the four principles, with a display heading and only its approved sentences, on a hairline grid.
-- **Product concept card**: name, line and description, labelled clearly as a concept, with the **disclaimer always present on the page**.
-- **Bottle hero**: the temporary bottle asset (below) or an abstract placeholder. No labels on the bottle.
+- **Principle row** (Our Philosophy): number + principle name + only its approved sentences, on a 2×2 hairline grid (no boxes).
+- **Product concept column**: "Concept · under development" eyebrow, name (`text-display-sm`, tracked), line and description, with the **disclaimer always present on the page**.
+- **Homepage hero** (client brief 2026-10-18, replaces the grey studio hero): full-width cinematic coastal scene in two layers: background `vida-hero-coastal-bg.png` plus the client's Artifact 002 bottle as a separate, unfiltered `<img>` (`vida-artifact-002-glass.png`), positioned in the scene's own coordinates inside a cover-sized box so it always rests on the same rock directly under the unchanged header. Left: "HONOUR LIFE." eyebrow, uppercase display h1 "ELEVATE / THE EVERYDAY", serif supporting line, body copy, and a dark green-black pill CTA "DISCOVER VIDA →" (hero-only style, `#0F2420`). Upper right: a short rule plus "Purposeful nutrition / Disciplined science / Thoughtful design". A soft mist scrim behind the text column keeps it legible. Below 1024px, the scene shows as a bottle-centred crop above the text on mist, with the principles listed after the CTA. Caption "Bottle concept · in development" at bottom right of the scene.
+- **Bottle concept** (`BottleConcept.astro`, Our Portfolio): the temporary render (≤ 273px) standing on a horizon hairline, captioned "Bottle concept · in development". No labels on the bottle. (The dashed outline was removed in Phase 2: it read as a wireframe placeholder.)
+- **Living Curve outline**: used once, at full height, beside "Every curve has a purpose." on the ink band of Our Philosophy.
+- **Product disclaimer** (`ProductDisclaimer.astro`): the verbatim notice with a clay rule. On Our Portfolio it appears under the hero and again after the concepts.
+- **Contact form**: underline fields, inline errors plus a focusable error summary, and `mailto:` hand-off (no delivery).
+- **Mobile menu**: full-screen ink panel with numbered links. Escape closes it, focus moves into the panel and returns to the toggle, and the page behind is `inert`. Without JS the nav links wrap in the header.
 
 ## Imagery
 
 | Asset | Status | Limits |
 |---|---|---|
 | `src/assets/temporary/living-curve-concept.png` | **TEMPORARY.** Cropped from the Design Codex image embedded in the content PDF (sheet 914×1371px; crop 136×546px). Guide lines and labels outside the bottle silhouette were blanked, and the whole crop was given a uniform per-channel tint (≤ 2.5%) so the sheet's warm background `#F3F2F0` becomes exactly mist `#EDEFF0`. The bottle's shape and detail are otherwise unaltered | Sharp only up to about **273px display height** (2× density) or 546px on 1× screens. Place it on `bg-mist` only (on any other background its rectangle shows). It is a concept render of packaging in development, embossed "VIDA" in a serif that is **not** the logo lettering, so it must not be presented as final packaging |
+
+| `src/assets/brand/living-curve-outline.svg` | Decorative hairline motif traced from the outer silhouette of the temporary render (`scripts/brand/bottle_profile.py`; symmetrical, smoothed) | Vector, so it scales freely. Decorative only (`aria-hidden`). It is a silhouette of a concept, not a packaging specification |
 
 **Quality verdict (decision 9):** adequate as a temporary, small-scale image (a small bottle in a large field of negative space works with the brief), but **not adequate** for a large, full-height cinematic hero. A high-resolution, label-free production render (transparent background, at least 2000px tall) is needed before launch.
 
@@ -159,6 +175,7 @@ The derived brand assets can be regenerated from the PDFs with the dependency-fr
 | `make_favicon.py` | `public/favicon.svg` (plus a square variant). The PNG/ICO files were rasterised from the square variant with headless Chrome (512px) and resized with macOS `sips` |
 | `pdf_images.py` | Decodes the PDF's embedded images to PNG |
 | `clean_bottle.py` | `src/assets/temporary/living-curve-concept.png` from the decoded Design Codex image |
+| `bottle_profile.py` | `src/assets/brand/living-curve-outline.svg` from the temporary render |
 
 Run them with `python3 -I <script> …`. Usage is in each file's docstring.
 

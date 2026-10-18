@@ -6,6 +6,13 @@
  * claims, certifications or partners that are not in the approved source.
  */
 
+/**
+ * Search-engine indexing switch. Keep false until the client approves the site
+ * for launch: every page then carries `noindex, nofollow` and robots.txt
+ * disallows crawling. Flip to true (and set SITE_URL) at launch.
+ */
+export const INDEXING_APPROVED = false;
+
 /** Confirmed by the client 2026-10-17. Use everywhere in text and metadata. */
 export const COMPANY_NAME = 'VIDA Specialties Limited';
 export const BRAND_NAME = 'VIDA';

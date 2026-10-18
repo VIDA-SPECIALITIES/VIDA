@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import CtaLink from '../components/CtaLink.astro';
+import { NAV } from '../data/site';
+---
+
+<SiteLayout title="Page not found" noindex>
+  <section class="container-site grid min-h-[70dvh] content-center gap-10 py-section">
+    <p class="eyebrow text-clay-deep">404</p>
+    <h1 class="text-display-lg">Page not found</h1>
+    <p class="max-w-prose text-lg">The page you are looking for does not exist or has moved.</p>
+    <nav aria-label="Site pages">
+      <ul class="flex flex-wrap gap-x-8 gap-y-4">
+        {
+          NAV.map((item) => (
+            <li>
+              <CtaLink href={item.href} variant="text">
+                {item.label}
+              </CtaLink>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </section>
+</SiteLayout>

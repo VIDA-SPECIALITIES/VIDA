@@ -15,9 +15,11 @@ Astro 7 + Tailwind CSS 4 + TypeScript (strict). Static output. Node ≥ 22.22 (d
 7. **Creative direction is not copy.** The notes in the PDF addressed to the build team (listed in `docs/approved-content.md`) must never appear on the site.
 8. **Imagery:** don't crop further images from the PDFs. The only extracted image is the documented temporary bottle (`src/assets/temporary/`), which must not be presented as final packaging.
 9. **Logo:** use only the traced SVGs via `Logo.astro`. Never stretch, distort, redraw, retype, recolour outside the palette, or break the clear-space and minimum sizes in `docs/design-system.md`.
-10. **Domain:** undecided. It's configured only through `SITE_URL` (`.env.example`). Never hard-code or assume a production URL. The email domain is not the website domain.
-11. **Never edit or delete** anything in `docs/brand-reference/`.
-12. **No deploying, domain purchases or paid services** without explicit instruction.
+10. **Domain:** undecided. It's configured only through `SITE_URL` (`.env.example`). Never hard-code or assume a production URL. The email domain is not the website domain. The sitemap and canonical/og:url tags appear only when it is set.
+11. **Indexing:** `INDEXING_APPROVED` in `src/data/site.ts` is `false`, so every page is `noindex, nofollow` and `robots.txt` disallows crawling. Set it to `true` only on the client's instruction at launch.
+12. **Contact form:** no message delivery is configured. The form validates input, then opens a pre-filled email in the visitor's own email app (`mailto:`), and says so. Never word it as if the website sends or receives messages. Add server delivery only once an endpoint is configured **and tested**, then update the copy.
+13. **Never edit or delete** anything in `docs/brand-reference/`.
+14. **No deploying, domain purchases or paid services** without explicit instruction.
 
 ## Project map
 
@@ -25,13 +27,21 @@ Astro 7 + Tailwind CSS 4 + TypeScript (strict). Static output. Node ≥ 22.22 (d
 docs/brand-reference/      Client source files (read-only, committed)
 docs/approved-content.md   Searchable transcript of approved copy + decisions + corrections
 docs/design-system.md      Working design system (colours, type, logo rules, imagery, open items)
+docs/source-asset-inventory.md  What source artwork exists, at what resolution, and what it can faithfully support
+docs/bottle-specification.md   Artifact 002 bottle record: stated / inferred / conflicting / to-confirm (PG-002, PDF p.2)
+docs/product/claims-register.md      Content and claim validation register — check before adding any copy
 src/data/site.ts           Single source for company name, vision/mission/purpose, contact, nav, disclaimer
+src/data/concepts.ts       Single source for the IMMUNE / RADIANCE / EDGE concepts (copy + specifications) used on Our Portfolio
 src/styles/global.css      Tailwind v4 @theme design tokens + base styles
 src/assets/brand/          Logo SVGs traced 1:1 from the logo PDF (fill = currentColor)
 src/assets/temporary/      Temporary assets awaiting production replacements (documented)
-src/components/Logo.astro  Logo component (wordmark default | lockup; `decorative` flag)
-src/layouts/BaseLayout.astro  <head>: title pattern, favicons, canonical/og:url only when SITE_URL is set
-src/pages/                 Routes. index.astro is a temporary holding page. design-system.astro is internal (noindex)
+src/components/             Logo (wordmark default | lockup; `decorative`), Header (responsive nav), Footer,
+                           PageHero, RailLabel, NextPage, BottleConcept, ProductDisclaimer, CtaLink,
+                           ConceptCard (collection), ConceptSpecifications (#specifications)
+src/layouts/BaseLayout.astro  <head>: title pattern, favicons, robots, JSON-LD, canonical/og:url only when SITE_URL is set
+src/layouts/SiteLayout.astro  Public page shell: skip link, header, <main>, footer, scroll reveal
+src/pages/                 index, our-story, our-philosophy, our-portfolio, partnerships, contact, 404,
+                           robots.txt.ts; design-system.astro is internal (always noindex, excluded from the sitemap)
 public/                    favicon.svg / favicon.ico / apple-touch-icon.png (from the wordmark's V)
 scripts/brand/             Python scripts that regenerate the logo SVGs, favicon and temporary bottle from the PDFs
 .claude/skills/vida-website/  Implementation + QA workflow — follow it for any page work
@@ -48,7 +58,7 @@ scripts/brand/             Python scripts that regenerate the logo SVGs, favicon
 
 Home · Our Story · Our Philosophy · Our Portfolio · Partnerships · Contact. Routes are defined in `NAV` (`/`, `/our-story/`, `/our-philosophy/`, `/our-portfolio/`, `/partnerships/`, `/contact/`).
 
-Content-to-page mapping (Our Philosophy is confirmed; the rest are proposed):
+Content-to-page mapping (all six pages are built this way; interface labels that aren't in the PDF are listed in `docs/approved-content.md` for client review):
 - **Home**: hero (Honour life. Elevate the everyday) → intro → Discover VIDA. Optionally add short teasers that link to the other pages, using approved lines only.
 - **Our Story**: Life, Elevated + Vision / Mission / Purpose + Building an African Institution (About).
 - **Our Philosophy** (confirmed, decision 11): "Everyday doesn't have to mean ordinary." + the four principles (Exceptional Water, Purposeful Nutrition, Disciplined Science, Thoughtful Design), each with only its approved sentences + the three "Every…" lines. Nothing added to fill space.
@@ -71,5 +81,6 @@ SITE_URL=https://… npm run build   # only once the domain is decided
 - Mobile-first. No horizontal scroll at 360px. Respect `prefers-reduced-motion`.
 - Semantic HTML: one `<h1>` per page, landmarks, visible focus, alt text that doesn't invent facts.
 - Keep JavaScript to a minimum. Astro components are static by default; add client islands only when needed.
-- Pages under development must pass `noindex` to `BaseLayout`.
+- Public pages use `SiteLayout`. Indexing is controlled site-wide by `INDEXING_APPROVED`; pass `noindex` only for pages that must never be indexed (e.g. `/design-system/`, 404).
+- Scroll reveal: add `data-reveal` to an element. It's hidden only when JS runs and is shown immediately under `prefers-reduced-motion`.
 - Spelling follows the approved copy, which is mostly British ("honour", "colour"); keep "recognized" in the vision as written.
