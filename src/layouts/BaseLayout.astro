@@ -15,6 +15,10 @@ const fullTitle = title ? `${title} | ${COMPANY_NAME}` : COMPANY_NAME;
 const robotsNoindex = noindex || !INDEXING_APPROVED;
 // Only available once SITE_URL is configured (see astro.config.mjs).
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+// Link-preview image (WhatsApp, iMessage, Slack, LinkedIn…): needs an absolute URL.
+const ogBase: string = import.meta.env.OG_BASE;
+const ogImage = ogBase ? new URL('/og-image.jpg', ogBase).href : undefined;
+const ogPageUrl = canonical ?? (ogBase ? new URL(Astro.url.pathname, ogBase).href : undefined);
 
 // Organisation facts are limited to approved contact details.
 const organisation = {
@@ -52,8 +56,25 @@ const organisation = {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_NG" />
-    {canonical && <meta property="og:url" content={canonical} />}
-    <meta name="twitter:card" content="summary" />
+    {ogPageUrl && <meta property="og:url" content={ogPageUrl} />}
+    {
+      ogImage && (
+        <>
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:image:type" content="image/jpeg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta
+            property="og:image:alt"
+            content="VIDA: Elevate the everyday. A VIDA glass bottle concept on coastal rocks at golden hour."
+          />
+          <meta name="twitter:image" content={ogImage} />
+        </>
+      )
+    }
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(organisation)} />
     <script is:inline>

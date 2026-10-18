@@ -22,6 +22,12 @@ function parseSiteUrl(value) {
 
 const site = parseSiteUrl(SITE_URL);
 
+// Base for the absolute link-preview image URL (og:image needs a full address).
+// Uses SITE_URL when set; otherwise the address Netlify passes to its builds
+// (URL = the site's primary address). Affects only link-preview tags: canonical
+// URLs and the sitemap still require SITE_URL.
+const ogBase = site ?? parseSiteUrl(process.env.URL);
+
 // https://astro.build/config
 export default defineConfig({
   site,
@@ -29,5 +35,8 @@ export default defineConfig({
   integrations: site ? [sitemap({ filter: (page) => !page.includes('/design-system/') })] : [],
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      'import.meta.env.OG_BASE': JSON.stringify(ogBase ?? ''),
+    },
   },
 });
