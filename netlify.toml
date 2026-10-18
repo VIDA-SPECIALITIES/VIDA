@@ -1,0 +1,10 @@
+# Netlify build settings (read automatically when the site is linked to GitHub).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Matches local development (package.json requires Node >= 22.22).
+  NODE_VERSION = "24"
+  # The production domain is undecided: leave SITE_URL unset here. Add it in
+  # Netlify > Site configuration > Environment variables once it is chosen.
