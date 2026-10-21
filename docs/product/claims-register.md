@@ -52,6 +52,17 @@ This register flags risk. It is not legal or regulatory advice.
 | "NAFDAC REG. NO.: PENDING (A1-XXXX)" | NOT FOR USE | Regulatory reference; implies an application is in progress |
 | Ingredient lists (e.g. "sodium, potassium, magnesium", "Purified water, caffeine, natural flavour") | NOT FOR USE · CONFIRM-TECH | Not in approved copy; EDGE's list also contradicts the client's coconut-water direction (2026-10-20) |
 
+## Client's `vida-collection-360.html` (2026-10-21): content not ported
+
+| Statement | Status | Replaced with |
+|---|---|---|
+| Card: "Health and longevity hydration" / "Electrolytes with micronutrients for everyday resilience." | NOT FOR USE · CONFIRM-REG | Approved line + description (concepts.ts) |
+| Card: "Collagen and beauty hydration" | NOT FOR USE · CONFIRM-REG | Approved line + description |
+| Card: "Caffeine for focus and active energy" / "A clean lift for productive days and active lives." | NOT FOR USE · CONFIRM-REG | Approved line + description |
+| Sleeve descriptors, ingredient lists, "NAFDAC REG. NO.: PENDING (A1-XXXX)", "NET: XXX ml · BATCH / EXP: XX" | NOT FOR USE | Approved line + formulation focus; `label.extra` in `src/data/vida-variants.ts` is ready for validated lines |
+| Sleeve back panel "Forged by water. Crafted for living." | NOT FOR USE (not approved copy) | Official lockup |
+| Hand-drawn "VIDA" wordmark (Path2D) | Logo rule (never redraw) | The traced lockup SVG drawn onto the sleeve |
+
 ## In supplied sources but **not** on the website
 
 | Statement (source) | Status | Why it isn't used |

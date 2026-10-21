@@ -5,12 +5,9 @@ import BottleConcept from '../components/BottleConcept.astro';
 import ProductDisclaimer from '../components/ProductDisclaimer.astro';
 import RailLabel from '../components/RailLabel.astro';
 import NextPage from '../components/NextPage.astro';
-import ConceptCard from '../components/ConceptCard.astro';
+import CollectionSection from '../components/CollectionSection.astro';
 import ConceptSpecifications from '../components/ConceptSpecifications.astro';
-import { CONCEPTS } from '../data/concepts';
 
-// Concepts: single source in src/data/concepts.ts (approved names, lines and descriptions).
-const concepts = CONCEPTS;
 ---
 
 <SiteLayout
@@ -21,49 +18,8 @@ const concepts = CONCEPTS;
     <ProductDisclaimer />
   </PageHero>
 
-  <!-- The VIDA Collection: three concepts on one Artifact 002 bottle -->
-  <section class="bg-[#f6f7f4]">
-    <div class="container-site py-section">
-      <div class="grid items-end gap-y-10 md:grid-cols-12" data-reveal>
-        <div class="md:col-span-8">
-          <p class="eyebrow text-green">The VIDA Collection</p>
-          <h2 class="mt-6 text-display-xl">
-            <span class="block">Three expressions.</span>
-            <span class="block text-green italic">One living curve.</span>
-          </h2>
-        </div>
-        <p class="max-w-[22rem] text-lead md:col-span-4 md:pb-3">
-          Different needs. One disciplined foundation. One Living Curve bottle carries a complete hydration system
-          designed for modern living.
-        </p>
-      </div>
-
-      <div class="mt-16 grid gap-6 md:mt-20 lg:grid-cols-3">
-        {
-          concepts.map((c) => (
-            <ConceptCard
-              id={c.id}
-              index={c.index}
-              name={c.short}
-              line={c.line}
-              text={c.text}
-              tone={c.id}
-            />
-          ))
-        }
-      </div>
-
-      <div
-        class="eyebrow mt-10 flex flex-col gap-3 border-t border-navy/15 pt-6 text-[0.625rem] text-navy/70 sm:flex-row sm:justify-between"
-      >
-        <span>Signature Collection · One Living Curve</span>
-        <span>Concepts under development</span>
-        <span>Abuja · Nigeria</span>
-      </div>
-
-      <ProductDisclaimer class="mt-12 max-w-3xl" />
-    </div>
-  </section>
+  <!-- The VIDA Collection: 360° bottle viewer -->
+  <CollectionSection />
 
   <ConceptSpecifications />
 

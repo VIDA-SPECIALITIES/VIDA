@@ -8,9 +8,9 @@ import cv2, numpy as np, sys, os
 src, out_dir = sys.argv[1], sys.argv[2]
 CAP_Y0, CAP_Y1 = 20, 145
 CAPS = {  # BGR
-    'immune': (81, 111, 35),     # brand green #236F51
-    'radiance': (169, 160, 214), # soft pink   #D6A0A9
-    'edge': (150, 145, 140),     # grey        #8C9196
+    'immune': (98, 150, 38),     # green #269662 (client wrapper spec 2026-10-21)
+    'radiance': (143, 113, 199), # pink  #C7718F
+    'edge': (152, 144, 138),     # grey  #8A9098
 }
 r = cv2.imread(src, cv2.IMREAD_UNCHANGED)
 h, w = r.shape[:2]

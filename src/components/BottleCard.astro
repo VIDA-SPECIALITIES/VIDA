@@ -1,0 +1,100 @@
+---
+/**
+ * VIDA Collection card with a 360° bottle stage (three.js, mounted lazily by
+ * CollectionSection.astro via src/scripts/bottle-viewer.ts).
+ * Until the 3D view is ready, or if WebGL is unavailable, a static poster of the
+ * same bottle (cap colour per variant) is shown, so the stage is never empty.
+ */
+import { Image } from 'astro:assets';
+import posterImmune from '../assets/renders/vida-artifact-002-render-immune.png';
+import posterRadiance from '../assets/renders/vida-artifact-002-render-radiance.png';
+import posterEdge from '../assets/renders/vida-artifact-002-render-edge.png';
+import { VIDA_VARIANT_MAP, type VariantKey } from '../data/vida-variants';
+
+interface Props {
+  variant: VariantKey;
+  index: string;
+  description: string;
+  sub: string;
+}
+
+const { variant, index, description, sub } = Astro.props;
+const v = VIDA_VARIANT_MAP[variant];
+const posters = { immune: posterImmune, radiance: posterRadiance, edge: posterEdge };
+// Full class names (Tailwind needs them literally); colours are design proposals.
+const tone = {
+  immune: { text: 'text-green', border: 'border-green', tint: 'bg-immune-tint', pressed: 'aria-pressed:text-green aria-pressed:border-green', ring: 'focus-visible:outline-green' },
+  radiance: { text: 'text-clay-deep', border: 'border-clay-deep', tint: 'bg-radiance-tint', pressed: 'aria-pressed:text-clay-deep aria-pressed:border-clay-deep', ring: 'focus-visible:outline-clay-deep' },
+  edge: { text: 'text-edge', border: 'border-edge', tint: 'bg-edge-tint', pressed: 'aria-pressed:text-edge aria-pressed:border-edge', ring: 'focus-visible:outline-edge' },
+}[variant];
+---
+
+<article
+  id={variant}
+  class:list={['vida-bottle-card flex scroll-mt-28 flex-col outline-none', tone.ring]}
+  data-bottle-card
+  data-variant={variant}
+  tabindex="0"
+  aria-labelledby={`bottle-${variant}`}
+  aria-describedby="collection-hint"
+>
+  <div class:list={['stage relative aspect-[4/5] cursor-grab touch-pan-y overflow-hidden select-none', tone.tint]} data-stage>
+    <!-- Poster: shown until the 3D view is ready, and as the no-WebGL fallback -->
+    <div class="poster pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
+      <Image
+        src={posters[variant]}
+        alt=""
+        widths={[320, 480, 720]}
+        sizes="(min-width: 1024px) 28vw, 90vw"
+        loading="lazy"
+        class="h-[88.7%] w-auto max-w-none"
+      />
+    </div>
+
+    <svg class="orbit pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+      <ellipse class="track" cx="200" cy="252" rx="124" ry="196"></ellipse>
+      <path
+        class:list={['trace', tone.text]}
+        d="M200 56 A124 196 0 1 1 200 448 A124 196 0 1 1 200 56"
+        pathLength="1"
+        stroke-dasharray="1"
+        stroke-dashoffset="1"></path>
+    </svg>
+    <p class:list={['pointer-events-none absolute top-[7%] right-[7%] m-0 font-display text-[clamp(1.25rem,1.9vw,1.625rem)] tracking-[0.12em]', tone.text]} aria-hidden="true">
+      {index}
+    </p>
+    <p class="degrees pointer-events-none absolute top-[7.6%] left-[7%] m-0 text-[0.6875rem] tracking-[0.18em] text-navy/75 tabular-nums" aria-hidden="true">
+      000°
+    </p>
+  </div>
+
+  <div class:list={['flex border-t border-navy/15', tone.tint]} role="group" aria-label={`${v.fullName}: viewing angle`}>
+    {
+      [
+        ['side', 'Side'],
+        ['top', 'Cap'],
+        ['base', 'Base'],
+      ].map(([view, label], i) => (
+        <button
+          type="button"
+          data-view={view}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+          class:list={[
+            'eyebrow flex-1 cursor-pointer border-b-2 border-transparent bg-transparent px-1.5 py-3.5 text-[0.6875rem] text-navy/75 transition-colors duration-300 hover:text-navy',
+            i > 0 && 'border-l border-l-navy/15',
+            tone.pressed,
+          ]}
+        >
+          {label}
+        </button>
+      ))
+    }
+  </div>
+
+  <div class:list={['flex-1 border-t-[3px] bg-paper px-6 pt-6 pb-7', tone.border]}>
+    <p class:list={['eyebrow', tone.text]}>VIDA / Concept {index}</p>
+    <h3 id={`bottle-${variant}`} class="mt-3 font-display text-display-sm tracking-[0.04em]">{v.fullName}</h3>
+    <p class="mt-3 font-display text-[1.3125rem] leading-snug">{description}</p>
+    <p class="mt-2 text-sm leading-relaxed text-navy/80">{sub}</p>
+  </div>
+</article>

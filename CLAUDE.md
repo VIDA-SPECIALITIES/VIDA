@@ -29,13 +29,16 @@ docs/source-asset-inventory.md  What source artwork exists, at what resolution, 
 docs/bottle-specification.md   Artifact 002 bottle record: stated / inferred / conflicting / to-confirm (PG-002, PDF p.2)
 docs/product/claims-register.md      Content and claim validation register — check before adding any copy
 src/data/site.ts           Single source for company name, vision/mission/purpose, contact, nav, disclaimer
+src/data/vida-variants.ts  Collection viewer data (colours + card/sleeve copy, derived from concepts.ts)
+src/scripts/bottle-viewer.ts  three.js 360° viewer, lazy-loaded by CollectionSection
 src/data/concepts.ts       Single source for the IMMUNE / RADIANCE / EDGE concepts (copy + specifications) used on Our Portfolio
 src/styles/global.css      Tailwind v4 @theme design tokens + base styles
 src/assets/brand/          Logo SVGs traced 1:1 from the logo PDF (fill = currentColor)
 src/assets/temporary/      Temporary assets awaiting production replacements (documented)
 src/components/             Logo (wordmark default | lockup; `decorative`), Header (responsive nav), Footer,
                            PageHero, RailLabel, NextPage, BottleConcept, ProductDisclaimer, CtaLink,
-                           ConceptCard (collection, with the 360° viewer), ConceptSpecifications (#specifications)
+                           CollectionSection + BottleCard (VIDA Collection, three.js 360° viewer),
+                           ConceptSpecifications (#specifications)
 src/layouts/BaseLayout.astro  <head>: title pattern, favicons, robots, JSON-LD, canonical/og:url only when SITE_URL is set
 src/layouts/SiteLayout.astro  Public page shell: skip link, header, <main>, footer, scroll reveal
 src/pages/                 index, our-story, our-philosophy, our-portfolio, partnerships, contact, 404,
