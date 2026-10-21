@@ -35,7 +35,7 @@ src/assets/brand/          Logo SVGs traced 1:1 from the logo PDF (fill = curren
 src/assets/temporary/      Temporary assets awaiting production replacements (documented)
 src/components/             Logo (wordmark default | lockup; `decorative`), Header (responsive nav), Footer,
                            PageHero, RailLabel, NextPage, BottleConcept, ProductDisclaimer, CtaLink,
-                           ConceptCard (collection), ConceptSpecifications (#specifications)
+                           ConceptCard (collection, with the 360° viewer), ConceptSpecifications (#specifications)
 src/layouts/BaseLayout.astro  <head>: title pattern, favicons, robots, JSON-LD, canonical/og:url only when SITE_URL is set
 src/layouts/SiteLayout.astro  Public page shell: skip link, header, <main>, footer, scroll reveal
 src/pages/                 index, our-story, our-philosophy, our-portfolio, partnerships, contact, 404,

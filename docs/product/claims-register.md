@@ -42,6 +42,16 @@ This register flags risk. It is not legal or regulatory advice.
 | EDGE: "Focus & Active Life", "Caffeine / Focus + Active Energy", "Caffeine-led hydration for productivity, energy, and physically active modern lives." | NOT FOR USE · CONFIRM-REG · CONFIRM-TECH | Energy/focus claims stay out. (Caffeine itself is now a client-supplied ingredient direction, see the EDGE formulation row; the claim wording here is still not used) |
 | Wrapper mock-up images (labels print the above) | NOT FOR USE | Same wording appears on the labels |
 
+## Wrapped-sleeve renders supplied 2026-10-21 (not used)
+
+| Statement (on the label) | Status | Why |
+|---|---|---|
+| IMMUNE: "HEALTH / LONGEVITY HYDRATION" | NOT FOR USE · CONFIRM-REG | Health/longevity claim |
+| RADIANCE: "COLLAGEN / BEAUTY HYDRATION" | NOT FOR USE · CONFIRM-REG | Beauty-benefit framing |
+| EDGE: "CAFFEINE / FOCUS + ACTIVE ENERGY", "PRODUCTIVITY + ACTIVE LIFE" | NOT FOR USE · CONFIRM-REG | Energy/focus/productivity claims |
+| "NAFDAC REG. NO.: PENDING (A1-XXXX)" | NOT FOR USE | Regulatory reference; implies an application is in progress |
+| Ingredient lists (e.g. "sodium, potassium, magnesium", "Purified water, caffeine, natural flavour") | NOT FOR USE · CONFIRM-TECH | Not in approved copy; EDGE's list also contradicts the client's coconut-water direction (2026-10-20) |
+
 ## In supplied sources but **not** on the website
 
 | Statement (source) | Status | Why it isn't used |
