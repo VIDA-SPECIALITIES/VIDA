@@ -1,4 +1,4 @@
-# Approved website content — VIDA Specialties Limited
+# Approved website content — VIDA Specialities Limited
 
 Transcribed from `docs/brand-reference/VIDA Web content.pdf` (6 pages). The PDF is the source of truth; this file exists so the copy is searchable and diff-able. If the two ever disagree, the PDF wins and this file must be corrected. The only exceptions are the documented corrections below.
 
@@ -6,7 +6,7 @@ Transcribed from `docs/brand-reference/VIDA Web content.pdf` (6 pages). The PDF 
 
 | # | Decision | Effect on this transcript |
 |---|---|---|
-| 1 | Company name is **VIDA Specialties Limited** everywhere | Matches the PDF body copy, which is transcribed as written. **Exceptions that are not text we control:** the supplied logo artwork's descriptor reads "SPECIALITIES LIMITED", and the approved email address is `hello@vidaspecialities.com`. Both are kept exactly as supplied. |
+| 1 | Company name is **VIDA Specialities Limited** everywhere (client decision **2026-10-20**, replacing "VIDA Specialties Limited" of 2026-10-17) | The PDF body copy spells it "Specialties" in four places (homepage intro, About heading, About body, Contact block); this transcript **normalises** them to "Specialities". This matches the supplied logo lockup ("SPECIALITIES LIMITED") and the approved email address `hello@vidaspecialities.com`. |
 | 2 | Nav item and page **"Our Approach" is renamed "Our Philosophy"** | The navigation below uses the new label |
 | 3 | The **typed vision** is the approved vision | The infographic wording must not be used, merged or substituted |
 | 10 | "every day" → "everyday" where grammar requires | One correction, recorded under [Corrections](#corrections-to-the-source-text) |
@@ -56,7 +56,7 @@ Headline: **HONOUR LIFE.** ELEVATE THE EVERYDAY
 
 Sub-headline: Premium hydration, thoughtfully created for modern living.
 
-Intro: **VIDA Specialties Limited is building a new generation of hydration products from Africa—combining exceptional water, purposeful nutrition, disciplined science and considered design.**
+Intro: **VIDA Specialities Limited is building a new generation of hydration products from Africa—combining exceptional water, purposeful nutrition, disciplined science and considered design.**
 
 CTA: **DISCOVER VIDA**
 
@@ -120,7 +120,9 @@ A sophisticated hydration concept being developed around carefully selected nutr
 
 ### VIDA EDGE
 **Hydration for the working mind.**
-A performance-oriented hydration concept designed for the rhythm of modern professional life.
+A performance-oriented hydration concept designed for the rhythm of modern professional life, being developed around coconut water with natural caffeine and other minerals.
+
+> Formulation clause "being developed around coconut water with natural caffeine and other minerals" added by the client on 2026-10-20 (not in the PDF). See `docs/product/claims-register.md`.
 
 ### THE VIDA BASE WATER STANDARD
 Every VIDA functional product begins with the same uncompromising foundation: water engineered for purity, consistency and exceptional drinking quality.
@@ -168,11 +170,11 @@ Email: hello@vidaspecialities.com
 
 ---
 
-## About VIDA Specialties Limited
+## About VIDA Specialities Limited
 
 Heading: **BUILDING AN AFRICAN INSTITUTION**
 
-VIDA Specialties Limited is a Nigerian consumer wellness company focused on premium hydration and functional beverages.
+VIDA Specialities Limited is a Nigerian consumer wellness company focused on premium hydration and functional beverages.
 
 Our approach combines product development, manufacturing discipline, quality management, regulatory responsibility and distinctive industrial design within a unified institutional framework.
 
@@ -184,7 +186,7 @@ VIDA is being built deliberately: **systems before scale, standards before speed
 
 ## Contact
 
-**VIDA SPECIALTIES LIMITED**
+**VIDA SPECIALITIES LIMITED**
 No. 44 Khartoum Street
 Wuse Zone 5
 Abuja, FCT
@@ -209,8 +211,8 @@ Functional labels added during the build. They state no facts or claims, but the
 | Home (hero, client request 2026-10-17, superseded) | "Signature Collection", "Ultra-clear glass · Subtle frost · Vertical emboss", "Concept in development", "Artifact 002 / The Living Curve Refined" (vertical label). Modelled on the client's reference page https://vida-3wyefume.manus.space/ |
 | Home | "VIDA" rail label (intro), "Purpose" (from PURPOSE), "The Nigerian Opportunity" (PDF section title), "Abuja · Nigeria" and "Bottle concept · in development" (hero horizon), "→" on Discover VIDA |
 | Inner pages | "Next" + page name on the closing link (its heading is an approved line) |
-| Our Portfolio (client request 2026-10-17, from https://vida-3wyefume.manus.space/our-portfolio) | "The VIDA Collection", "Three expressions. One living curve.", "Different needs. One disciplined foundation. The Artifact 002 bottle carries a complete hydration system designed for modern living.", "VIDA / Concept 01–03", bottle label "VIDA · Concept · <NAME>", "Signature Collection · Artifact 002", "Concepts under development", "Abuja · Nigeria". **Not used** from the reference: "Health & Longevity", "Beauty & Women", "Focus & Active Life", "Caffeine…", "designed with women in mind", "Designed in Nigeria", "View concept" (claims or wording outside approved copy) |
-| Our Portfolio, Concept Specifications section `#specifications` (client brief 2026-10-18, replaces the earlier table) | Eyebrow "Concept specifications"; heading "Three concepts. One considered foundation."; intro "Each VIDA concept is being developed around a distinct hydration proposition, united by a shared water standard and the Artifact 002 bottle platform. Explore the intended direction, formulation focus and development status of each concept."; "One foundation. Three expressions." + "IMMUNE, RADIANCE and EDGE share the same product-development foundation: one water standard and one bottle platform."; Water standard / Bottle platform / Development stage; "Distinct directions. Shared design principles."; per-concept Concept type / Formulation direction / Intended positioning (e.g. "Collagen peptides, hyaluronic acid and vitamin C are being explored."); comparison rows Concept direction, Formulation focus, Intended positioning, Water standard, Bottle platform, Development status; "Beauty-led hydration", "Professional lifestyle", "under consideration"; disclaimer "VIDA IMMUNE, VIDA RADIANCE and VIDA EDGE are concepts under development. Final formulations, ingredient quantities, nutritional information, product specifications, availability and permitted claims remain subject to technical validation and applicable regulatory requirements." Data lives in `src/data/concepts.ts` |
+| Our Portfolio (client request 2026-10-17, from https://vida-3wyefume.manus.space/our-portfolio) | "The VIDA Collection", "Three expressions. One living curve.", "Different needs. One disciplined foundation. One Living Curve bottle carries a complete hydration system designed for modern living." (wording updated by the client 2026-10-20; was "The Artifact 002 bottle"), "VIDA / Concept 01–03", bottle label "VIDA · Concept · <NAME>", "Signature Collection · One Living Curve" (updated 2026-10-20; "002" removed from all displayed text 2026-10-20), "Concepts under development", "Abuja · Nigeria". **Not used** from the reference: "Health & Longevity", "Beauty & Women", "Focus & Active Life", "Caffeine…", "designed with women in mind", "Designed in Nigeria", "View concept" (claims or wording outside approved copy) |
+| Our Portfolio, Concept Specifications section `#specifications` (client brief 2026-10-18, replaces the earlier table) | Eyebrow "Concept specifications"; heading "Three concepts. One considered foundation."; intro "Each VIDA concept is being developed around a distinct hydration proposition, united by a shared water standard and the One Living Curve bottle platform. Explore the intended direction, formulation focus and development status of each concept."; "One foundation. Three expressions." + "IMMUNE, RADIANCE and EDGE share the same product-development foundation: one water standard and one bottle platform."; Water standard / Bottle platform / Development stage; "Distinct directions. Shared design principles."; per-concept Concept type / Formulation direction / Intended positioning (e.g. "Collagen peptides, hyaluronic acid and vitamin C are being explored."); comparison rows Concept direction, Formulation focus, Intended positioning, Water standard, Bottle platform, Development status; "Beauty-led hydration", "Professional lifestyle", "under consideration"; disclaimer "VIDA IMMUNE, VIDA RADIANCE and VIDA EDGE are concepts under development. Final formulations, ingredient quantities, nutritional information, product specifications, availability and permitted claims remain subject to technical validation and applicable regulatory requirements." Data lives in `src/data/concepts.ts` |
 | Our Portfolio (earlier) | "Concept · under development" (per card), "Foundation" (eyebrow for the Base Water Standard), "Bottle concept · in development" |
 | Partnerships | "Partnership areas", "Partnership enquiries" (from the Contact block) |
 | Contact | "Write to us", the form note ("This form does not send messages from the website…"), field labels, validation messages, the "Prepare email" button and the post-submit notice |

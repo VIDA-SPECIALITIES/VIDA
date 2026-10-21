@@ -13,8 +13,8 @@
  */
 export const INDEXING_APPROVED = false;
 
-/** Confirmed by the client 2026-10-17. Use everywhere in text and metadata. */
-export const COMPANY_NAME = 'VIDA Specialties Limited';
+/** Confirmed by the client 2026-10-20 (supersedes the 2026-10-17 spelling; see docs/approved-content.md). Use everywhere in text and metadata. */
+export const COMPANY_NAME = 'VIDA Specialities Limited';
 export const BRAND_NAME = 'VIDA';
 
 /** Approved vision: the typed text in the content PDF (not the infographic variant). */
@@ -51,4 +51,4 @@ export const PRODUCT_DISCLAIMER =
   'Products shown are currently under development. Final formulations, specifications, availability and permitted claims are subject to technical validation and applicable regulatory approvals.';
 
 export const DEFAULT_DESCRIPTION =
-  'VIDA Specialties Limited is building a new generation of hydration products from Africa—combining exceptional water, purposeful nutrition, disciplined science and considered design.';
+  'VIDA Specialities Limited is building a new generation of hydration products from Africa—combining exceptional water, purposeful nutrition, disciplined science and considered design.';

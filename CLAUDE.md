@@ -1,12 +1,10 @@
-# VIDA Specialties Limited — corporate website
+# VIDA Specialities Limited — corporate website
 
 Astro 7 + Tailwind CSS 4 + TypeScript (strict). Static output. Node ≥ 22.22 (developed on 24).
 
 ## Non-negotiable rules
 
-1. **Company name:** always **VIDA Specialties Limited**. This applies to copy, page titles, metadata, alt text, structured data, the footer and commit messages. Use `COMPANY_NAME` from `src/data/site.ts`; don't hard-code it. (Confirmed by the client 2026-10-17.) Two supplied items spell it differently and must **not** be altered:
-   - the logo lockup artwork, whose descriptor reads "SPECIALITIES LIMITED" (so the UI uses the wordmark plus the name as text, see `docs/design-system.md`);
-   - the approved email address `hello@vidaspecialities.com`.
+1. **Company name:** always **VIDA Specialities Limited**. This applies to copy, page titles, metadata, alt text, structured data, the footer and commit messages. Use `COMPANY_NAME` from `src/data/site.ts`; don't hard-code it. (Confirmed by the client on 2026-10-20, replacing the earlier "Specialties" decision of 2026-10-17.) Never write "Specialties". This spelling matches the supplied logo lockup ("SPECIALITIES LIMITED") and the email domain `vidaspecialities.com`. The content PDF's body copy spells it "Specialties"; transcriptions are normalised to the confirmed spelling.
 2. **Approved content only.** Site copy comes from `docs/brand-reference/VIDA Web content.pdf`, transcribed in `docs/approved-content.md` (with documented corrections). Do not paraphrase, embellish or "improve" it without client approval.
 3. **Approved vision** = the typed text in the content PDF (`VISION` in `src/data/site.ts`). Never substitute, merge with or rewrite it to match the infographic version.
 4. **Never invent:** product claims or benefits, health/nutrition/efficacy statements, certifications (NAFDAC, ISO, HACCP, etc.), regulatory approvals, named partners or customers, statistics, testimonials, awards, launch dates, prices, stockists, team members, founding dates, or final packaging/labels. If a page seems to need one of these, leave it out and raise it with the client.

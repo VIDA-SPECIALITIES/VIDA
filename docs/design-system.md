@@ -24,12 +24,11 @@ These translate into the design principles below:
 | Asset | File | Notes |
 |---|---|---|
 | Wordmark (VIDA) | `src/assets/brand/vida-wordmark.svg` | **Default in the interface.** Traced 1:1 from the logo PDF |
-| Full lockup (VIDA + descriptor) | `src/assets/brand/vida-logo-lockup.svg` | Traced 1:1. The descriptor reads **"SPECIALITIES LIMITED"**, see below |
+| Full lockup (VIDA + descriptor) | `src/assets/brand/vida-logo-lockup.svg` | Traced 1:1. The descriptor reads **"SPECIALITIES LIMITED"**, matching the company name |
 | Component | `src/components/Logo.astro` | `variant="wordmark" \| "lockup"` (default `wordmark`), `decorative` hides it from screen readers when the name is in adjacent text. Inherits `currentColor` |
 
-**Name mismatch in the supplied artwork.** The confirmed company name is **VIDA Specialties Limited**, but the supplied lockup's descriptor line spells "SPECIALITIES". Altering or retyping logo artwork is not permitted. So, until the brand owner supplies corrected artwork or approves the lockup as-is:
-- the interface uses the **wordmark** and sets "VIDA Specialties Limited" as live text in Montserrat where the full name is needed (header, footer, holding page);
-- the lockup is kept for reference only.
+**Company name and the lockup.** The company name is **VIDA Specialities Limited** (client decision 2026-10-20, replacing the earlier "Specialties"). The supplied lockup's descriptor already reads "SPECIALITIES LIMITED", so the artwork and the name now **match**; the earlier "corrected artwork" request is withdrawn.
+- The interface still uses the **wordmark** plus "VIDA Specialities Limited" set as live text in Montserrat (header, footer). The lockup may now be used wherever it suits the layout, at ≥ 240px wide.
 
 ### Clear space and minimum size (provisional, derived from the supplied artwork)
 
@@ -140,10 +139,10 @@ Headline line breaks are set deliberately (one `<span class="block">` per line, 
 
 - **Primary CTA** ("DISCOVER VIDA"): outlined, eyebrow text, slow fill on hover. Never a filled bright button.
 - **Text link CTA** ("PARTNER WITH VIDA →"): eyebrow text with an underline hairline.
-- **Header**: 72px tall. The wordmark plus "VIDA Specialties Limited" set as text (xl and up) on the left, five nav links in eyebrow style on the right (Home is the wordmark), collapsing to a full-screen menu on mobile. The bottom hairline appears only after scrolling.
+- **Header**: 72px tall. The wordmark plus "VIDA Specialities Limited" set as text (xl and up) on the left, five nav links in eyebrow style on the right (Home is the wordmark), collapsing to a full-screen menu on mobile. The bottom hairline appears only after scrolling.
 - **RailLabel** (`RailLabel.astro`): clay hairline + eyebrow for the left rail (`tone="dark"` on ink).
 - **NextPage** (`NextPage.astro`): closes each inner page except Partnerships (which ends with Partner with VIDA) and Contact. A hairline row with the index + "Next" + page name in the rail and the next page's approved heading at `text-display-lg`.
-- **Footer** (ink): wordmark, "VIDA Specialties Limited" as text, approved contact details, © year.
+- **Footer** (ink): wordmark, "VIDA Specialities Limited" as text, approved contact details, © year.
 - **Principle row** (Our Philosophy): number + principle name + only its approved sentences, on a 2×2 hairline grid (no boxes).
 - **Product concept column**: "Concept · under development" eyebrow, name (`text-display-sm`, tracked), line and description, with the **disclaimer always present on the page**.
 - **Homepage hero** (client brief 2026-10-18, replaces the grey studio hero): full-width cinematic coastal scene in two layers: background `vida-hero-coastal-bg.png` plus the client's Artifact 002 bottle as a separate, unfiltered `<img>` (`vida-artifact-002-glass.png`), positioned in the scene's own coordinates inside a cover-sized box so it always rests on the same rock directly under the unchanged header. Left: "HONOUR LIFE." eyebrow, uppercase display h1 "ELEVATE / THE EVERYDAY", serif supporting line, body copy, and a dark green-black pill CTA "DISCOVER VIDA →" (hero-only style, `#0F2420`). Upper right: a short rule plus "Purposeful nutrition / Disciplined science / Thoughtful design". A soft mist scrim behind the text column keeps it legible. Below 1024px, the scene shows as a bottle-centred crop above the text on mist, with the principles listed after the CTA. Caption "Bottle concept · in development" at bottom right of the scene.
@@ -159,7 +158,7 @@ Headline line breaks are set deliberately (one `<span class="block">` per line, 
 |---|---|---|
 | `src/assets/temporary/living-curve-concept.png` | **TEMPORARY.** Cropped from the Design Codex image embedded in the content PDF (sheet 914×1371px; crop 136×546px). Guide lines and labels outside the bottle silhouette were blanked, and the whole crop was given a uniform per-channel tint (≤ 2.5%) so the sheet's warm background `#F3F2F0` becomes exactly mist `#EDEFF0`. The bottle's shape and detail are otherwise unaltered | Sharp only up to about **273px display height** (2× density) or 546px on 1× screens. Place it on `bg-mist` only (on any other background its rectangle shows). It is a concept render of packaging in development, embossed "VIDA" in a serif that is **not** the logo lettering, so it must not be presented as final packaging |
 
-| `src/assets/brand/living-curve-outline.svg` | Decorative hairline motif traced from the outer silhouette of the temporary render (`scripts/brand/bottle_profile.py`; symmetrical, smoothed) | Vector, so it scales freely. Decorative only (`aria-hidden`). It is a silhouette of a concept, not a packaging specification |
+| `src/assets/brand/living-curve-outline.svg` | Decorative hairline motif traced from the outer silhouette of the temporary render (`scripts/brand/bottle_outline.py`, traced 2026-10-20 from the 1536 × 2304 render; symmetrical, smoothed, rounded base) | Vector, so it scales freely. Decorative only (`aria-hidden`). It is a silhouette of a concept, not a packaging specification |
 
 **Quality verdict (decision 9):** adequate as a temporary, small-scale image (a small bottle in a large field of negative space works with the brief), but **not adequate** for a large, full-height cinematic hero. A high-resolution, label-free production render (transparent background, at least 2000px tall) is needed before launch.
 
@@ -175,18 +174,18 @@ The derived brand assets can be regenerated from the PDFs with the dependency-fr
 | `make_favicon.py` | `public/favicon.svg` (plus a square variant). The PNG/ICO files were rasterised from the square variant with headless Chrome (512px) and resized with macOS `sips` |
 | `pdf_images.py` | Decodes the PDF's embedded images to PNG |
 | `clean_bottle.py` | `src/assets/temporary/living-curve-concept.png` from the decoded Design Codex image |
-| `bottle_profile.py` | `src/assets/brand/living-curve-outline.svg` from the temporary render |
+| `bottle_outline.py` | `src/assets/brand/living-curve-outline.svg` from the high-resolution render (replaces `bottle_profile.py`) |
 
 Run them with `python3 -I <script> …`. Usage is in each file's docstring.
 
 ## Domain and metadata
 
 - The production domain is **undecided**. `astro.config.mjs` reads `SITE_URL` from the environment or a git-ignored `.env` (template: `.env.example`). While it's empty, no canonical or `og:url` tags are emitted. Never hard-code or guess a domain. The email domain in the contact details is not the website domain.
-- Title pattern: "<Page> | VIDA Specialties Limited" (the homepage uses the name alone).
+- Title pattern: "<Page> | VIDA Specialities Limited" (the homepage uses the name alone).
 
 ## Open items for the brand owner
 
-1. Corrected lockup artwork reading "SPECIALTIES", or approval to use the lockup as supplied.
+1. ~~Corrected lockup artwork~~ (resolved 2026-10-20: the company name now matches the supplied lockup).
 2. Master print colour references (Pantone/CMYK), if they exist.
 3. Designer-approved clear-space, minimum-size and print rules to replace the provisional ones above.
 4. A high-resolution, label-free Living Curve bottle render.

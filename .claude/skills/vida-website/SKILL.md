@@ -1,6 +1,6 @@
 ---
 name: vida-website
-description: Implementation and quality-assurance workflow for the VIDA Specialties Limited website. Use whenever building, editing or reviewing any page, section, component, copy, metadata or styling in this project.
+description: Implementation and quality-assurance workflow for the VIDA Specialities Limited website. Use whenever building, editing or reviewing any page, section, component, copy, metadata or styling in this project.
 ---
 
 # VIDA website: implementation and QA workflow
@@ -16,7 +16,7 @@ Read `CLAUDE.md` first. Its non-negotiable rules override anything here.
 ## 2. Implementation
 
 1. **Copy:** paste approved text exactly, including the documented corrections (e.g. "everyday experiences"). Pull shared facts (company name, vision/mission/purpose, contact, disclaimer, nav) from `src/data/site.ts`; never retype them.
-2. **Layout:** public pages use `SiteLayout` with `title` (the page name only; the layout appends "| VIDA Specialties Limited") and a `description` built from approved copy. Indexing is controlled site-wide by `INDEXING_APPROVED` (currently `false`). Pass `noindex` only for pages that must never be indexed. Any new label that isn't in the approved copy must be added to the "Interface labels" table in `docs/approved-content.md`.
+2. **Layout:** public pages use `SiteLayout` with `title` (the page name only; the layout appends "| VIDA Specialities Limited") and a `description` built from approved copy. Indexing is controlled site-wide by `INDEXING_APPROVED` (currently `false`). Pass `noindex` only for pages that must never be indexed. Any new label that isn't in the approved copy must be added to the "Interface labels" table in `docs/approved-content.md`.
 3. **Styling:** use Tailwind utilities backed by `@theme` tokens (`bg-mist`, `text-navy`, `text-display-md`, `eyebrow`, `container-site`, `py-section`, …). No raw hex values, and no font families other than `font-display` and `font-sans`.
 4. **Logo:** use `<Logo />` (wordmark). Where the full name is needed, set `COMPANY_NAME` as text next to it and pass `decorative`. Respect the clear space (¼ letter height) and minimum widths (wordmark 96px, lockup 240px). Use the lockup only if the client has approved it.
 5. **Accessibility:** one `<h1>` per page; headings in logical order; `<header>`, `<nav aria-label>`, `<main>`, `<footer>` landmarks; descriptive link text; visible focus; text contrast ≥ 4.5:1 (≥ 3:1 for text ≥ 24px). Don't use `clay` for text on light backgrounds, and don't go lighter than `text-navy/70` for text under 24px on mist (`navy/60` is only 3.5:1).
@@ -36,10 +36,9 @@ npm run build   # must complete
 
 ### Content audit (grep the built output and source)
 ```bash
-# Company name: "Specialities" is allowed only in the email address, the logo-lockup SVG and the docs that explain the mismatch
-# (the internal /design-system/ page and the Logo.astro comment name the lockup's spelling on purpose and are excluded)
-grep -rnioE "(^|[^a-z])specialities" dist/ src/ --include='*.html' --include='*.astro' --include='*.ts' \
-  | grep -v "design-system\|Logo.astro" && echo "FAIL: wrong company name spelling" || echo "OK: name"
+# Company name is "VIDA Specialities Limited" (client decision 2026-10-20): "Specialties" must not appear anywhere
+grep -rniE "specialties" dist/ src/ public/ scripts/ --include='*.html' --include='*.astro' --include='*.ts' --include='*.txt' \
+  && echo "FAIL: old company name spelling" || echo "OK: name"
 grep -rn "Our Approach\|our-approach" dist/ src/ && echo "FAIL: old nav label/route" || echo "OK: nav"
 # -w (whole words) so bundled JS such as preventDefault() does not match "prevent"
 grep -rniwE "nafdac|iso ?[0-9]+|certified|certification|approved by|clinically|proven|guarantee[ds]?|cures?|prevents?|boosts? immunity|lorem|ipsum|TODO" dist/ \
@@ -56,7 +55,7 @@ for f in $(grep -rlE "IMMUNE|RADIANCE|EDGE|BASE WATER" dist --include=*.html); d
 - Check that none of the creative-direction sentences in `docs/approved-content.md` appear on the site.
 
 ### Metadata
-- `<title>` follows "<Page> \| VIDA Specialties Limited" (the homepage uses the company name alone).
+- `<title>` follows "<Page> \| VIDA Specialities Limited" (the homepage uses the company name alone).
 - Meta description is present, comes from approved copy, and is ≤ 160 characters where practical.
 - `lang="en-NG"` is set. Favicons are linked. `noindex` is present on unapproved pages and absent on pages approved for launch.
 - With `SITE_URL` unset: there are no `canonical` or `og:url` tags. With it set (`SITE_URL=https://example.org npm run build` as a test), they appear and use that origin.

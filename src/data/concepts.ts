@@ -79,15 +79,15 @@ export const CONCEPTS: Concept[] = [
     short: 'EDGE',
     name: 'VIDA EDGE',
     line: 'Hydration for the working mind.',
-    text: 'A performance-oriented hydration concept designed for the rhythm of modern professional life.',
+    // Formulation basis added by the client on 2026-10-20.
+    text: 'A performance-oriented hydration concept designed for the rhythm of modern professional life, being developed around coconut water with natural caffeine and other minerals.',
     spec: {
       direction: 'Performance-oriented hydration',
       type: 'Performance-oriented hydration',
-      formulation: 'In development.',
-      formulationShort: 'In development',
+      formulation: 'Being developed around coconut water with natural caffeine and other minerals.',
+      formulationShort: 'Coconut water with natural caffeine and other minerals',
       positioning: 'The rhythm of modern professional life',
       positioningShort: 'Professional lifestyle',
-      formulationPending: true,
     },
   },
 ];
@@ -95,7 +95,7 @@ export const CONCEPTS: Concept[] = [
 /** Shared foundation for all three concepts. */
 export const CONCEPT_FOUNDATION = [
   { label: 'Water standard', value: 'VIDA Base Water Standard' },
-  { label: 'Bottle platform', value: 'Artifact 002 — The Living Curve Refined' },
+  { label: 'Bottle platform', value: 'One Living Curve Bottle' },
   { label: 'Development stage', value: 'Concepts under development' },
 ] as const;
 

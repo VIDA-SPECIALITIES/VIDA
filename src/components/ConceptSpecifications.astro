@@ -20,7 +20,7 @@ const tableRows: Row[] = [
   { label: 'Formulation focus', value: (c) => c.spec.formulationShort, muted: (c) => !!c.spec.formulationPending },
   { label: 'Intended positioning', value: (c) => c.spec.positioningShort },
   { label: 'Water standard', value: () => 'VIDA Base Water Standard' },
-  { label: 'Bottle platform', value: () => 'Artifact 002' },
+  { label: 'Bottle platform', value: () => 'One Living Curve Bottle' },
   { label: 'Development status', value: () => 'Under development' },
 ];
 ---
@@ -39,7 +39,7 @@ const tableRows: Row[] = [
         </h2>
         <p class="mt-8 max-w-[36rem] text-lead">
           Each VIDA concept is being developed around a distinct hydration proposition, united by a shared water
-          standard and the Artifact 002 bottle platform. Explore the intended direction, formulation focus and
+          standard and the One Living Curve bottle platform. Explore the intended direction, formulation focus and
           development status of each concept.
         </p>
       </div>
@@ -48,14 +48,14 @@ const tableRows: Row[] = [
     <!-- B · Shared foundation -->
     <div class="mt-20 grid overflow-hidden border border-navy/10 bg-paper md:mt-28 lg:grid-cols-12" data-reveal>
       <div class="relative hidden bg-mist lg:col-span-3 lg:block" aria-hidden="true">
-        <div class="absolute inset-x-0 top-8 bottom-0 flex justify-center">
+        <div class="absolute inset-x-0 top-8 bottom-8 flex items-center justify-center">
           <Image
             src={render}
             alt=""
             widths={[240, 360, 480]}
             sizes="18vw"
             loading="lazy"
-            class="h-[118%] w-auto max-w-none object-contain"
+            class="h-full w-auto max-w-full object-contain"
           />
         </div>
       </div>
