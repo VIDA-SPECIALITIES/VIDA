@@ -4,24 +4,10 @@ import { PRODUCT_DISCLAIMER } from '../data/site';
 
 interface Props {
   class?: string;
-  /** `lg`: larger, semibold, for prominent placements (e.g. under the Our Portfolio heading). */
-  size?: 'default' | 'lg';
 }
-const { class: className, size = 'default' } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
-<aside
-  aria-label="Product development notice"
-  class:list={['border-l-2 border-clay py-1', size === 'lg' ? 'border-l-[3px] pl-6' : 'pl-5', className]}
->
-  <p
-    class:list={[
-      'italic',
-      size === 'lg'
-        ? 'text-[1.0625rem] leading-relaxed font-semibold text-navy md:text-lg'
-        : 'text-sm leading-relaxed text-navy/80',
-    ]}
-  >
-    {PRODUCT_DISCLAIMER}
-  </p>
+<aside aria-label="Product development notice" class:list={['border-l-2 border-clay py-1 pl-5', className]}>
+  <p class="text-sm leading-relaxed text-navy/80 italic">{PRODUCT_DISCLAIMER}</p>
 </aside>
